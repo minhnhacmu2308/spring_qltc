@@ -86,10 +86,10 @@
     </header>
     <div class="main">
         <!--slider-->
-        <div class="main__slide">
+        <div th:fragment="main_slide" class="main__slide">
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(user/assets/images/bana-slide.jpg})"></div>
+                     style="background-image: url(user/assets/images/bana-slide.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInLeft">
                         <h1>tour</h1>
@@ -102,7 +102,7 @@
             </div>
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(styles/images/hoian-slide.jpg)"></div>
+                     style="background-image: url(user/assets/images/hoian-slide.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInRight">
                         <h1>tour</h1>
@@ -115,7 +115,7 @@
             </div>
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(styles/images/phuquoc_slide.jpg)"></div>
+                     style="background-image: url(user/assets/images/phuquoc_slide.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInDown">
                         <h1>tour</h1>
@@ -139,7 +139,7 @@
                 </ul>
             </div>
         </div>
-        <div class="main_search">
+        <div th:fragment="main_search" class="main_search">
             <div id="tabs" class="main_search__tabs">
                 <ul class="search_tabs__list">
                     <li class="search_tabs__item"><a href="#tabs-1"><i
