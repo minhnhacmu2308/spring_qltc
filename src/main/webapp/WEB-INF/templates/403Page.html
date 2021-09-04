@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments :: html_head">
+  <title>Access Denied</title>
+</head>
+
+<body style="background-color: #0d6efd">
+<!-- Include _menu.html -->
+<div >
+  <div style="margin:50px auto;border: 1px solid #bacbe6; width: 600px;height: 200px;border-radius: 10px;background-color: #bacbe6;padding: 20px 20px">
+    <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+
+    <a class="btn btn-danger" href="/logout">Đăng xuất</a>
+  </div>
+</div>
+
+
+
+</body>
+
+</html>
