@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/user/assets/styles/tooltipster/dist/css/tooltipster.bundle.min.css}" />
+  <script type="text/javascript"  th:src="@{/user/assets/styles/tooltipster/dist/js/tooltipster.bundle.min.js}" ></script>
+  <script>
+    window.onscroll = function () {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 35 || document.documentElement.scrollTop > 35) {
+        $(document).ready(function () {
+          $(".top_bar").hide();
+        });
+
+      } else {
+        $(document).ready(function () {
+          $(".top_bar").show();
+        });
+      }
+    }
+
+    $(document).ready(function () {
+      $('.bar_1').animate({
+        width: "70%"
+      });
+      $('.bar_2').animate({
+        width: "40%"
+      });
+      $('.bar_3').animate({
+        width: "43%"
+      });
+      $('.bar_4').animate({
+        width: "65%"
+      });
+    });
+    $(document).ready(function() {
+      $('.tooltip').tooltipster();
+    });
+  </script>
+
+
+</head>
+<body>
+<div id="wrapper">
+  <!-- Header -->
+  <header th:replace="user/fragments :: header_menu" class="header">
+    <!-- Top Bar -->
+  </header>
+  <div class="main">
+    <div class="main__slide_offers">
+      <div class="">
+        <img height="600px" width="1700px"  src="https://png.pngtree.com/thumb_back/fw800/back_our/20190619/ourmid/pngtree-wedding-cover-background-material-image_137746.jpg">
+        <!--  <div class="home_slide__background"
+               style="background-image: url(/user/assets/images/phuquoc_slide.jpg)"></div>-->
+        <div class="home__content">
+          <div style="color: #31124b"class="home__title animated bounceInDown">
+            CHI TIẾT SẢNH CƯỚI
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!--        About us-->
+    <div class="about" style="margin-top: 70px">
+      <div class="box about__box">
+        <div th:if="${weddinghall.image}">
+          <div  class="about__image"><img style="width: 600px;height: 350px" th:src="@{'/user/assets/images/'+${weddinghall.image}}" alt=""></div>
+
+        </div>
+        <div th:unless="${weddinghall.image}">
+          <div class="about__image" style="position: relative">
+            <img src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg" alt="">
+
+          </div>
+
+        </div>
+        <script>
+          $("#upfile1").click(function () {
+            $("#file1").trigger('click');
+          });
+        </script>
+        <div class="about__content">
+          <div class="about__title"><span th:text="${weddinghall.name}"></span></div>
+          <p class="about__text" style="font-weight: bold">Mô tả: <span th:text="${weddinghall.description}"></span></p>
+
+
+          <!-- <div class="button button_about">
+               <div class="button_bcg"></div>
+               <a href="#">Sửa thông tin cá nhân<span></span><span></span><span></span></a>
+           </div>-->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <footer th:replace="user/fragments :: footer" class="footer">
+  </footer>
+</div>
+</body>
+
+
+</html>

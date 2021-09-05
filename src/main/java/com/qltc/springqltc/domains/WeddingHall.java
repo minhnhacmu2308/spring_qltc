@@ -24,6 +24,9 @@ public class WeddingHall {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "status")
     private int status;
 

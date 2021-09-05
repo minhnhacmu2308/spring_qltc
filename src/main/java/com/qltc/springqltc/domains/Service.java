@@ -27,6 +27,9 @@ public class Service {
     @Column(name = "cost")
     private int cost;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "status")
     private int status;
 

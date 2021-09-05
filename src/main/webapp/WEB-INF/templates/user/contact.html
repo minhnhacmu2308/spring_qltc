@@ -25,24 +25,27 @@
     <div class="contact_form_container">
       <div class="box contact_form__box">
         <div class="contact_form__title">Form liên hệ</div>
-        <form action="" id="form_contact" class="contact__form" method="post" name="form_contact"
+        <form name='f' th:action="@{/lien-he}" id="form_contact" class="contact__form" method="post"
               onsubmit="return validateForm()">
           <label>
-            <input id="form_name" class="contact__form_name input_field" name="name" placeholder="Họ và Tên"
+            <input id="form_name" class="contact__form_name input_field" required name="fullname" placeholder="Họ và Tên"
                    type="text" value="">
           </label>
           <label>
-            <input id="form_email" class="contact__form_email input_field" name="email" placeholder="E-mail"
+            <input id="form_email" class="contact__form_email input_field" required name="email" placeholder="E-mail"
                    type="text" value="">
           </label>
           <label>
-            <input id="form_subject" class="contact__form_subject input_field" name="subject"
-                   placeholder="Chủ đề" type="text">
+            <input id="form_subject" class="contact__form_subject input_field" required name="phonenumber"
+                   placeholder="Số điện thoại" type="text">
           </label>
-          <textarea name="mess" id="form_mess" placeholder="Nội dung" rows="4"
+
+          <textarea required name="content" id="form_mess" placeholder="Nội dung" rows="4"
                     class="contact__form_mess input_field"></textarea>
           <input type="submit" class="contact__form_button button trans_200" value="Gởi đi">
+          <p style="color:green;font-size: 30px;font-weight: bold;margin-top: 20px " th:utext="${msg}"></p>
         </form>
+
       </div>
     </div>
 

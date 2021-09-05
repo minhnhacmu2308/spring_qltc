@@ -33,6 +33,7 @@ public class MenuFood {
     @Column(name = "status")
     private int status;
 
+    @Transient
     @OneToMany(mappedBy = "menuFood")
     private List<Booking> bookings;
 }

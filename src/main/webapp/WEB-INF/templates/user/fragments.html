@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script>
+        $("#single_item").slick({
+            dots: true
+        });
+        $("#testimonials").slick({
+            dots: false
+        });
+    </script>
+    <script>
         window.onscroll = function () {
             scrollFunction(),
                 backTop()
@@ -61,14 +69,21 @@
                 </div>
 
             </div>
-            <div class="bar__user">
-                <div class="bar__user-login"><a href="#">login</a></div>
-                <div class="bar__user-regis"><a href="#">register</a></div>
+            <div th:if="${session.user}" class="bar__user">
+
+                <a th:if="${session.user.image}" th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}"> <img style="border-radius: 100px;margin-right: 10px"  height="30px" width="30px" th:src="@{'/user/assets/images/'+${session.user.image}}"></a>
+                <a th:unless="${session.user.image}" th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}"> <img style="border-radius: 100px;margin-right: 10px"  height="30px" width="30px" src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"></a>
+                <div class="bar__user-login"><a th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}" th:text="${session.user.fullName}"></a></div>
+                <div class="bar__user-regis"><a href="/user/dang-xuat">Đăng xuất</a></div>
+            </div>
+            <div th:unless="${session.user}" class="bar__user">
+                <div class="bar__user-login"><a href="/user/dang-nhap">Đăng nhập</a></div>
+                <div class="bar__user-regis"><a href="/user/dang-ki">Đăng kí</a></div>
             </div>
         </div>
 
         <div class="main_nav">
-            <div class="main_nav__logo"><a href="#"><img  th:src="@{user/assets/images/logo.png}" alt="logo"> TIỆC CƯỚI </a></div>
+            <div class="main_nav__logo"><a href="#"><img  th:src="@{/user/assets/images/logo.png}" alt="logo"> TIỆC CƯỚI </a></div>
             <div class="main_nav__menu">
                 <ul class="main_nav__list">
                     <li class="main_nav__item"><a href="/trang-chu">TRANG CHỦ</a></li>
@@ -89,11 +104,11 @@
         <div th:fragment="main_slide" class="main__slide">
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(user/assets/images/bana-slide.jpg)"></div>
+                     style="background-image: url(http://tieccuoicatkhanh.vn/wp-content/uploads/2017/02/bg-vip-8.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInLeft">
-                        <h1>tour</h1>
-                        <h1>Bana Hill</h1>
+                        <h1>Sảnh</h1>
+                        <h1>Trầu Câu 1</h1>
                         <div class="button home_slider__button">
                             <div class="button_bcg"></div>
                             <a href="#">Xem ngay<span></span><span></span><span></span></a></div>
@@ -102,11 +117,11 @@
             </div>
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(user/assets/images/hoian-slide.jpg)"></div>
+                     style="background-image: url(http://tieccuoicatkhanh.vn/wp-content/uploads/2017/01/lang-tre-slider1.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInRight">
-                        <h1>tour</h1>
-                        <h1>Hội An</h1>
+                        <h1>Sảnh </h1>
+                        <h1>Trầu Câu 2</h1>
                         <div class="button home_slider__button">
                             <div class="button_bcg"></div>
                             <a href="#">Xem ngay<span></span><span></span><span></span></a></div>
@@ -115,11 +130,11 @@
             </div>
             <div class="home_slide__item">
                 <div class="home_slide__background"
-                     style="background-image: url(user/assets/images/phuquoc_slide.jpg)"></div>
+                     style="background-image: url(http://tieccuoicatkhanh.vn/wp-content/uploads/2017/02/bg-vip-2.jpg)"></div>
                 <div class="home_slider__content">
                     <div class="home_slider_content_inner animated bounceInDown">
-                        <h1>tour</h1>
-                        <h1>Phú Quốc</h1>
+                        <h1>Sảnh</h1>
+                        <h1>Trầu Câu 3</h1>
                         <div class="button home_slider__button">
                             <div class="button_bcg"></div>
                             <a href="#">Xem ngay<span></span><span></span><span></span></a></div>
@@ -867,14 +882,6 @@
 
 </body>
 
-<script>
 
-    $("#single_item").slick({
-        dots: true
-    });
-    $("#testimonials").slick({
-        dots: false
-    });
-</script>
 
 </html>

@@ -23,6 +23,6 @@ public class WeddingHallShift {
     private WeddingHall weddingHall1;
 
     @ManyToOne
-    @JoinColumn(name = "id_shìt", referencedColumnName = "id")
+    @JoinColumn(name = "id_shìft", referencedColumnName = "id")
     private Shift shift;
 }
