@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+
+</head>
+<body>
+<div id="wrapper">
+    <!-- Header -->
+    <header th:replace="user/fragments :: header_menu" class="header">
+
+    </header>
+    <div class="main">
+        <div class="main__slide_offers">
+            <div class="">
+                <img height="600px" width="1700px"  src="http://thamlotsan.net.vn/uploads/images/tin-tuc/tham-trai-san-cho-nha-hang-tiec-cuoi/tham-trai-san-tiec-cuoi-su-lua-chon-hoan-hao-cho-cac-nha-hang-lon-02.jpg">
+                <!--<div class="home_slide__background"
+                     style="background-image: url(styles/images/offers_slide.jpg)"></div>-->
+                <div class="home__content">
+                    <div style="color: #31124b" class="home__title animated bounceInLeft">
+                        SẢNH CƯỚI
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        Intro-->
+
+        <div class="offers" style="margin-top: 50px">
+            <div class="box offers__box1">
+                <div class="offers_sorting_container">
+                    <ul class="offers_sorting">
+                        <li id="offer_1">
+                            <span class="sorting_text">Giá</span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul id="offer_box_1" class="animated fadeInUp">
+                                <li class="sort_btn"><span>Hiện tất cả</span></li>
+                                <li class="sort_btn"><span>Tăng dần</span></li>
+                                <li class="sort_btn"><span>Giảm dần</span></li>
+                            </ul>
+                        </li>
+                        <li id="offer_2">
+                            <span class="sorting_text">Thứ tự</span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul id="offer_box_2">
+                                <li class="sort_btn"><span>Mặc định</span></li>
+                                <li class="sort_btn"><span>Bảng chữ cái</span></li>
+                            </ul>
+                        </li>
+                        <li id="offer_3">
+                            <span class="sorting_text">Sao</span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul id="offer_box_3">
+                                <li class="filter_btn" data-filter="*"><span>Hiện tất cả</span></li>
+                                <li class="sort_btn"><span>Giảm dần</span></li>
+                                <li class="filter_btn" data-filter=".rating_3"><span>3</span></li>
+                                <li class="filter_btn" data-filter=".rating_4"><span>4</span></li>
+                                <li class="filter_btn" data-filter=".rating_5"><span>5</span></li>
+                            </ul>
+                        </li>
+                        <li id="offer_4">
+                            <span class="sorting_text">Khoảng cách</span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul id="offer_box_4">
+                                <li class="num_sorting_btn"><span>50Km</span></li>
+                                <li class="num_sorting_btn"><span>100Km</span></li>
+                                <li class="num_sorting_btn"><span>200Km</span></li>
+                            </ul>
+                        </li>
+                        <li id="offer_5">
+                            <span class="sorting_text">Đánh giá</span>
+                            <i class="fas fa-angle-down"></i>
+                            <ul id="offer_box_5">
+                                <li class="num_sorting_btn"><span>Very Good</span></li>
+                                <li class="num_sorting_btn"><span>Good</span></li>
+                                <li class="num_sorting_btn"><span>Medium</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box offers__box2">
+                <div th:if="${list.totalPages>0}" class="offers_grid" style="position: relative;">
+                    <th:block th:each="weddinghall : ${list.content}">
+                        <div style="margin-top: 15px" class="offers_item2">
+                            <div class="offers_image f_image">
+                                <!-- Image by https://unsplash.com/@kensuarez -->
+                                <div class="offers_image_background"
+                                ><img height="300px" width="400px" th:src="@{'/user/assets/images/'+${weddinghall.image}}"></div>
+                                <div class="offers_name"><a href="#" th:text="${weddinghall.name}" ></a></div>
+                            </div>
+                            <div class="offers_content">
+                                <div class="offers_price" th:text="${weddinghall.name}"></div>
+                                <div class="rating rating_4 offers_rating" data-rating="4">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="offers_text" th:text="${weddinghall.description}"></p>
+                                <div class="offers_icons">
+                                    <ul class="offers_icons_list">
+                                        <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
+                                    </ul>
+                                </div>
+                                <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
+                                </div>
+                                <div class="offer_reviews">
+                                    <div class="offer_reviews_content">
+                                        <div class="offer_reviews_title">very good</div>
+                                        <div class="offer_reviews_subtitle">100 lượt xem</div>
+                                    </div>
+                                    <div class="offer_reviews_rating" style="text-align: center">8.0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <div class="blog_navigation">
+                        <ul>
+                            <li class="blog_dot active" ><a th:href="@{/tim-kiem(keysearch=${keysearch},page=0)}"> First</a></li>
+                            <li th:if="${numberPage>0}" class="blog_dot active" style="margin-left: 10px" ><a th:href="@{/tim-kiem(keysearch=${keysearch},page = ${list.number - 1})}">Previous</a> </li>
+                            <li th:if="${numberPage<list.totalPages - 1}" class="blog_dot active"  style="margin-left: 10px" ><a th:href="@{/tim-kiem(keysearch=${keysearch},page = ${list.number + 1})}">Next</a> </li>
+                            <li class="blog_dot active" style="margin-left: 10px" > <a th:href="@{/tim-kiem(keysearch=${keysearch},page = ${list.totalPages - 1})}">Last</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="blog_navigation">
+                       <ul>
+                         <th:block>
+                           <li class="blog_dot active" ><a th:href="@{/sanh-cuoi(page=0)}"> First</a></li>
+                         </th:block>
+
+
+                       </ul>
+                     </div>-->
+                </div>
+                <div th:unless="${list.totalPages>0}" class="offers_grid">
+                    <p style="color: red;font-weight: bold;font-size: large">Không tìm thấy sảnh cưới nào</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            function checkActive(a){
+
+            }
+        </script>
+    </div>
+
+    <footer th:replace="user/fragments :: footer" class="footer">
+
+    </footer>
+</div>
+</body>
+<script src="styles/js/main_js.js"></script>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+    $(document).ready(function () {
+        $("#offer_1").mouseover(function () {
+            $("#offer_box_1").css({
+                top: "105%",
+                visibility: "unset",
+                opacity: "1"
+            });
+        })
+        $("#offer_2").mouseover(function () {
+            $("#offer_box_2").css({
+                top: "105%",
+                visibility: "unset",
+                opacity: "1"
+            });
+        })
+        $("#offer_3").mouseover(function () {
+            $("#offer_box_3").css({
+                top: "105%",
+                visibility: "unset",
+                opacity: "1"
+            });
+        })
+        $("#offer_4").mouseover(function () {
+            $("#offer_box_4").css({
+                top: "105%",
+                visibility: "unset",
+                opacity: "1"
+            });
+        })
+        $("#offer_5").mouseover(function () {
+            $("#offer_box_5").css({
+                top: "105%",
+                visibility: "unset",
+                opacity: "1"
+            });
+        })
+
+        $("#offer_1").mouseout(function () {
+            $("#offer_box_1").css({
+                opacity: "0",
+                top: "120%",
+                visibility: "hidden"
+            });
+        })
+        $("#offer_2").mouseout(function () {
+            $("#offer_box_2").css({
+                opacity: "0",
+                top: "120%",
+                visibility: "hidden"
+            });
+        })
+        $("#offer_3").mouseout(function () {
+            $("#offer_box_3").css({
+                opacity: "0",
+                top: "120%",
+                visibility: "hidden"
+            });
+        })
+        $("#offer_4").mouseout(function () {
+            $("#offer_box_4").css({
+                opacity: "0",
+                top: "120%",
+                visibility: "hidden"
+            });
+        })
+        $("#offer_5").mouseout(function () {
+            $("#offer_box_5").css({
+                opacity: "0",
+                top: "120%",
+                visibility: "hidden"
+            });
+        })
+    })
+</script>
+
+</html>

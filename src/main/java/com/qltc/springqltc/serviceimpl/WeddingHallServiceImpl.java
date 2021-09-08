@@ -22,4 +22,10 @@ public class WeddingHallServiceImpl implements WeddingHallService {
     public WeddingHall findById(int id) {
         return weddingHallRespository.findById(id);
     }
+
+    @Override
+    public List<WeddingHall> findAll() {
+        return null;
+    }
+
 }

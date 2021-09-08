@@ -25,6 +25,9 @@ public class Booking {
     @Column(name = "created_at")
     private String createdAt;
 
+    @Column(name = "total")
+    private int total;
+
     @Column(name = "status")
     private int status;
 

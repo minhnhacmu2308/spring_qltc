@@ -79,161 +79,69 @@
       </div>
       <div class="box offers__box2">
         <div class="offers_grid" style="position: relative;">
-          <div class="offers_item2">
-            <div class="offers_image f_image">
-              <!-- Image by https://unsplash.com/@kensuarez -->
-              <div class="offers_image_background"
-                   style="background-image:url(styles/images/offers_1.jpg)"></div>
-              <div class="offers_name"><a href="#">Tour Tây Bắc</a></div>
-            </div>
-            <div class="offers_content">
-              <div class="offers_price">7,000,000đ</div>
-              <div class="rating rating_4 offers_rating" data-rating="4">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+          <th:block th:each="weddinghall : ${list.content}">
+            <div style="margin-top: 25px" class="offers_item2">
+              <div class="offers_image f_image">
+                <!-- Image by https://unsplash.com/@kensuarez -->
+                <div class="offers_image_background"
+                     ><img height="300px" width="400px" th:src="@{'/user/assets/images/'+${weddinghall.image}}"></div>
+                <div class="offers_name"><a href="#" th:text="${weddinghall.name}" ></a></div>
               </div>
-              <p class="offers_text">Tour du lịch hè Mai Châu - Mộc Châu sẽ đưa bạn đến thăm thung lũng
-                Mai Châu yên bình trong sớm mai, những cánh đồng lúa xanh thắm lòng người hay những ngôi
-                nhà sàn nhỏ san sát nhau.</p>
-              <div class="offers_icons">
-                <ul class="offers_icons_list">
-                  <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
-                </ul>
-              </div>
-              <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
-              </div>
-              <div class="offer_reviews">
-                <div class="offer_reviews_content">
-                  <div class="offer_reviews_title">very good</div>
-                  <div class="offer_reviews_subtitle">100 lượt xem</div>
+              <div class="offers_content">
+                <div class="offers_price" th:text="${weddinghall.name}"></div>
+                <div class="rating rating_4 offers_rating" data-rating="4">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
                 </div>
-                <div class="offer_reviews_rating" style="text-align: center">8.0</div>
-              </div>
-            </div>
-          </div>
-          <div class="offers_item2">
-            <div class="offers_image f_image">
-              <!-- Image by https://unsplash.com/@kensuarez -->
-              <div class="offers_image_background"
-                   style="background-image:url(styles/images/offers_3.jpg)"></div>
-              <div class="offers_name"><a href="#">Tour Miền Trung</a></div>
-            </div>
-            <div class="offers_content">
-              <div class="offers_price">7,290,000đ</div>
-              <div class="rating rating_4 offers_rating" data-rating="4">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p class="offers_text">Tour bắt đầu từ Đà Nẵng - Bana Hill - Hội An - Huế - Thánh Đại La
-                Vang - Động Phong Nha0000 - Tham gia lễ hội pháo hoa quốc tế Đà Nẵng 2019 chủ đề
-                "NHỮNG DÒNG SÔNG KỂ CHUYỆN"</p>
-              <div class="offers_icons">
-                <ul class="offers_icons_list">
-                  <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
-                </ul>
-              </div>
-              <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
-              </div>
-              <div class="offer_reviews">
-                <div class="offer_reviews_content">
-                  <div class="offer_reviews_title">very good</div>
-                  <div class="offer_reviews_subtitle">100 lượt xem</div>
+                <p class="offers_text" th:text="${weddinghall.description}"></p>
+                <div class="offers_icons">
+                  <ul class="offers_icons_list">
+                    <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
+                    <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
+                    <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
+                    <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
+                  </ul>
                 </div>
-                <div class="offer_reviews_rating" style="text-align: center">8.7</div>
-              </div>
-            </div>
-          </div>
-          <div class="offers_item2">
-            <div class="offers_image f_image">
-              <!-- Image by https://unsplash.com/@kensuarez -->
-              <div class="offers_image_background"
-                   style="background-image:url(styles/images/offers_2.jpg)"></div>
-              <div class="offers_name"><a href="#">Tour Quy Nhơn</a></div>
-            </div>
-            <div class="offers_content">
-              <div class="offers_price">8,690,000đ</div>
-              <div class="rating rating_4 offers_rating" data-rating="4">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p class="offers_text">Tour Du lịch Quy Nhơn 4 ngày từ Hà Nội - Du lịch Quy Nhơn cùng Du
-                Lịch Việt sẽ đưa bạn đến với Quy Nhơn – một thành phố biển xinh đẹp, không ồn ào, cũng
-                không đẹp lộng lẫy bằng Nha Trang.</p>
-              <div class="offers_icons">
-                <ul class="offers_icons_list">
-                  <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
-                </ul>
-              </div>
-              <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
-              </div>
-              <div class="offer_reviews">
-                <div class="offer_reviews_content">
-                  <div class="offer_reviews_title">very good</div>
-                  <div class="offer_reviews_subtitle">100 lượt xem</div>
+                <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
                 </div>
-                <div class="offer_reviews_rating" style="text-align: center">8.5</div>
-              </div>
-            </div>
-          </div>
-          <div class="offers_item2">
-            <div class="offers_image f_image">
-              <!-- Image by https://unsplash.com/@kensuarez -->
-              <div class="offers_image_background"
-                   style="background-image:url(styles/images/offers_4.jpg)"></div>
-              <div class="offers_name"><a href="#">Tour Côn Đảo</a></div>
-            </div>
-            <div class="offers_content">
-              <div class="offers_price">9,900,000đ</div>
-              <div class="rating rating_4 offers_rating" data-rating="4">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <p class="offers_text">Du Lịch Côn Đảo - Côn Đảo được xem là hòn đảo du lịch với những bãi
-                tắm hoang sơ tuyệt đẹp, làn nước trong xanh mát lạnh, bãi cát dài phẳng mịn. Được ví như
-                thiên đường nghỉ dưỡng.</p>
-              <div class="offers_icons">
-                <ul class="offers_icons_list">
-                  <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
-                  <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
-                </ul>
-              </div>
-              <div class="button book_button"><a href="#">book<span></span><span></span><span></span></a>
-              </div>
-              <div class="offer_reviews">
-                <div class="offer_reviews_content">
-                  <div class="offer_reviews_title">very good</div>
-                  <div class="offer_reviews_subtitle">100 lượt xem</div>
+                <div class="offer_reviews">
+                  <div class="offer_reviews_content">
+                    <div class="offer_reviews_title">very good</div>
+                    <div class="offer_reviews_subtitle">100 lượt xem</div>
+                  </div>
+                  <div class="offer_reviews_rating" style="text-align: center">8.0</div>
                 </div>
-                <div class="offer_reviews_rating" style="text-align: center">9.1</div>
               </div>
             </div>
+          </th:block>
+          <div class="blog_navigation">
+            <ul>
+              <li class="blog_dot active" ><a th:href="@{/sanh-cuoi(page=0)}"> First</a></li>
+              <li th:if="${numberPage>0}" class="blog_dot active" style="margin-left: 10px" ><a th:href="@{/sanh-cuoi(page = ${list.number - 1})}">Previous</a> </li>
+              <li th:if="${numberPage<list.totalPages - 1}" class="blog_dot active"  style="margin-left: 10px" ><a th:href="@{/sanh-cuoi(page = ${list.number + 1})}">Next</a> </li>
+              <li class="blog_dot active" style="margin-left: 10px" > <a th:href="@{/sanh-cuoi(page = ${list.totalPages - 1})}">Last</a></li>
+            </ul>
           </div>
+         <!-- <div class="blog_navigation">
+            <ul>
+              <th:block>
+                <li class="blog_dot active" ><a th:href="@{/sanh-cuoi(page=0)}"> First</a></li>
+              </th:block>
+
+
+            </ul>
+          </div>-->
         </div>
       </div>
     </div>
+    <script>
+      function checkActive(a){
+
+      }
+    </script>
   </div>
 
   <footer th:replace="user/fragments :: footer" class="footer">

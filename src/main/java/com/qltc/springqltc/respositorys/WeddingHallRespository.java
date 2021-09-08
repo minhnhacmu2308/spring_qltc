@@ -14,4 +14,7 @@ public interface WeddingHallRespository extends JpaRepository<WeddingHall,Intege
     List<WeddingHall> getWeddingHallByNumber(int number);
 
     WeddingHall findById(int id);
+
+    List<WeddingHall> findAll();
+
 }

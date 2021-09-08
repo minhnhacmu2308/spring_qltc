@@ -4,6 +4,8 @@ import com.qltc.springqltc.domains.MenuFood;
 import com.qltc.springqltc.respositorys.MenuFoodRespository;
 import com.qltc.springqltc.services.MenuFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +16,8 @@ public class MenuFoodServiceImpl implements MenuFoodService {
     MenuFoodRespository menuFoodRespository;
 
     @Override
-    public List<MenuFood> findAll() {
-        return menuFoodRespository.findAll();
+    public Page<MenuFood> findAll(Pageable pageable) {
+        return menuFoodRespository.findAll(pageable);
     }
 
     @Override

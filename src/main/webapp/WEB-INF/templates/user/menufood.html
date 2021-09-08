@@ -38,15 +38,15 @@
               </div>
               <div class="blog_post_text"><p th:text="${service.description}">.</p>
               </div>
-              <div class="blog_post_link"><a th:href="@{/chi-tiet-dich-vu(id=${service.id})}">Xem tiếp...</a></div>
+              <div class="blog_post_link"><a th:href="@{/chi-tiet-menu-thuc-an(id=${service.id})}">Xem tiếp...</a></div>
             </div>
           </th:block>
           <div class="blog_navigation">
             <ul>
-              <li class="blog_dot active" ><a th:href="@{/dich-vu-va-uu-dai(page=0)}"> First</a></li>
-              <li th:if="${numberPage>0}" class="blog_dot active" style="margin-left: 10px" ><a th:href="@{/dich-vu-va-uu-dai(page = ${list.number - 1})}">Previous</a> </li>
-              <li th:if="${numberPage<list.totalPages - 1}" class="blog_dot active"  style="margin-left: 10px" ><a th:href="@{/dich-vu-va-uu-dai(page = ${list.number + 1})}">Next</a> </li>
-              <li class="blog_dot active" style="margin-left: 10px" > <a th:href="@{/dich-vu-va-uu-dai(page = ${list.totalPages - 1})}">Last</a></li>
+              <li class="blog_dot active" ><a th:href="@{/dich-sach-menu-thuc-an(page=0)}"> First</a></li>
+              <li th:if="${numberPage>0}" class="blog_dot active" style="margin-left: 10px" ><a th:href="@{/dich-sach-menu-thuc-an(page = ${list.number - 1})}">Previous</a> </li>
+              <li th:if="${numberPage<list.totalPages - 1}" class="blog_dot active"  style="margin-left: 10px" ><a th:href="@{/dich-sach-menu-thuc-an(page = ${list.number + 1})}">Next</a> </li>
+              <li class="blog_dot active" style="margin-left: 10px" > <a th:href="@{/dich-sach-menu-thuc-an(page = ${list.totalPages - 1})}">Last</a></li>
             </ul>
           </div>
 
