@@ -58,7 +58,7 @@
       <div class="box main_cta__box">
         <div class="slider" id="single_item">
           <div>
-            <div class="cta_item">
+            <div class="cta_item" style="margin-bottom: 40px !important;">
               <div class="cta_item__title">Gói DỊCH VỤ TRỌN BỘ SẢNH CƯỚI CÙNG MENU 8 MÓN</div>
               <div class="cta_item__text">Sảnh tiệc được thiết kế theo lối kiến trúc châu Âu đẳng cấp, tất cả đều có trần cao và thoáng đãng, đặc biệt không có cột che chắn, nhằm tạo nên một không gian yến tiệc rộng rãi và sang trọng. Ngoài ra, hầu hết sảnh tiệc ở đây được trang bị đầy đủ hệ thống âm thanh, ánh sáng hiện đại, được bố trí một cách thông minh, độc đáo,
                 làm cho buổi tiệc thêm ấn tượng và lộng lẫy, thể hiện được phong cách riêng của bạn.
@@ -70,8 +70,8 @@
             </div>
           </div>
           <div>
-            <div class="cta_item">
-              <div class="cta_item__title">Gói DỊCH VỤ TRỌN BỘ SẢNH CƯỚI CÙNG MENU 9 MÓN VÀ KHUYẾN MÃI MÓN TRÁNG MIỆNG</div>
+            <div class="cta_item" style="margin-bottom: 40px !important;">
+              <div class="cta_item__title">Gói DỊCH VỤ TRỌN BỘ SẢNH CƯỚI CÙNG MENU 8 MÓN</div>
               <div class="cta_item__text">Sảnh tiệc được thiết kế theo lối kiến trúc châu Âu đẳng cấp, tất cả đều có trần cao và thoáng đãng, đặc biệt không có cột che chắn, nhằm tạo nên một không gian yến tiệc rộng rãi và sang trọng. Ngoài ra, hầu hết sảnh tiệc ở đây được trang bị đầy đủ hệ thống âm thanh, ánh sáng hiện đại, được bố trí một cách thông minh, độc đáo,
                 làm cho buổi tiệc thêm ấn tượng và lộng lẫy, thể hiện được phong cách riêng của bạn.
               </div>
@@ -82,6 +82,7 @@
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
@@ -135,9 +136,9 @@
             <a th:href="@{/chi-tiet-menu-thuc-an(id=${menufood.id})}">
               <div class="test_item">
                 <div class="test_item_box">
-                  <div class="test_image"><img th:src="@{'/user/assets/images/'+${menufood.image}}"  alt="">
+                  <div class="test_image"><img  th:src="@{'/user/assets/images/'+${menufood.image}}"  alt="">
                   </div>
-                  <div class="test_icon"><img src="user/assets/images/island_t.png"   alt=""></div>
+                  <div class="test_icon"><img  src="user/assets/images/island_t.png"   alt=""></div>
                   <!--                <div class="test_content_container">-->
                   <!--                  <div class="test_content">-->
                   <!--                    <div class="test_item_info">-->
@@ -157,7 +158,7 @@
       </div>
     </div>
     <!--        Hotel-->
-    <div class="main_hotel">
+   <!-- <div class="main_hotel">
       <div class="box main_hotel__box">
         <h2 class="main_hotel_title">Khách sạn được ưa thích nhất</h2>
         <div class="hotel_items">
@@ -243,7 +244,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   <footer th:replace="user/fragments :: footer" class="footer">
   </footer>

@@ -28,4 +28,14 @@ public class WeddingHallServiceImpl implements WeddingHallService {
         return null;
     }
 
+    @Override
+    public int numberViewCurrent(int id) {
+        return weddingHallRespository.getViewCurrent(id);
+    }
+
+    @Override
+    public int updateView(int number, int id) {
+        return weddingHallRespository.updateView(number,id);
+    }
+
 }

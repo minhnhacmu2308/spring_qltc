@@ -12,4 +12,8 @@ public interface ServiceService {
     Service findById(int id);
 
     Page<Service> findAll(Pageable pageable);
+
+    List<Service> getAll();
+
+    Service findServiceById(int id);
 }

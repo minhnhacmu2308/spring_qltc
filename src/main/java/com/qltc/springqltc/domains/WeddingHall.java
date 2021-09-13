@@ -24,8 +24,14 @@ public class WeddingHall {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "cost")
+    private int cost;
+
     @Column(name = "description")
     private String description;
+
+    @Column(name = "view")
+    private int view;
 
     @Column(name = "status")
     private int status;
@@ -33,6 +39,5 @@ public class WeddingHall {
     @OneToMany(mappedBy = "weddingHall")
     private List<Booking> bookings;
 
-    @OneToMany(mappedBy = "weddingHall1")
-    private List<WeddingHallShift> weddingHallShifts;
+
 }

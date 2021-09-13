@@ -26,7 +26,7 @@ public class Booking {
     private String createdAt;
 
     @Column(name = "total")
-    private int total;
+    private String total;
 
     @Column(name = "status")
     private int status;
@@ -36,8 +36,13 @@ public class Booking {
     private WeddingHall weddingHall;
 
     @ManyToOne
+    @JoinColumn(name = "id_shift",referencedColumnName = "id")
+    private Shift shift;
+
+    @ManyToOne
     @JoinColumn(name = "id_menufood",referencedColumnName = "id")
     private MenuFood menuFood;
+
 
     @OneToMany(mappedBy = "booking")
     private List<BookService> bookServices;

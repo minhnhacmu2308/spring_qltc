@@ -28,6 +28,8 @@ public class Shift {
     private int status;
 
     @OneToMany(mappedBy = "shift")
-    private List<WeddingHallShift> weddingHallShifts;
+    private List<Booking> bookings;
+
+
 
 }

@@ -29,4 +29,14 @@ public class MenuFoodServiceImpl implements MenuFoodService {
     public MenuFood findById(int id) {
         return menuFoodRespository.findById(id);
     }
+
+    @Override
+    public List<MenuFood> getAll() {
+        return menuFoodRespository.getAll();
+    }
+
+    @Override
+    public MenuFood findMenuById(int id) {
+        return menuFoodRespository.findMenuFoodById(id);
+    }
 }

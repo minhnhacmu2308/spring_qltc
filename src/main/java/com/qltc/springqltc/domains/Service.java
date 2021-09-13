@@ -33,6 +33,7 @@ public class Service {
     @Column(name = "status")
     private int status;
 
+
     @OneToMany(mappedBy = "service")
     private List<BookService> bookServices;
 }

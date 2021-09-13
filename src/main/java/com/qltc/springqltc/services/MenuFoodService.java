@@ -13,4 +13,8 @@ public interface MenuFoodService {
     List<MenuFood> getMenuFoodByNumber(int number);
 
     MenuFood findById(int id);
+
+    List<MenuFood> getAll();
+
+    MenuFood findMenuById(int id);
 }

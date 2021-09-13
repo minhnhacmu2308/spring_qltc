@@ -14,5 +14,11 @@ public interface ServiceRespository extends PagingAndSortingRepository<Service,I
 
     @Query(value = "SELECT * FROM service LIMIT 2",nativeQuery = true)
     List<Service> getService();
+
     Service findById(int id);
+
+    @Query(value = "SELECT * FROM service ",nativeQuery = true)
+    List<Service> getAll();
+
+    Service findServiceById(int id);
 }

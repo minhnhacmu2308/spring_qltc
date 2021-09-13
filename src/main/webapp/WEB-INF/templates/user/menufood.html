@@ -43,7 +43,7 @@
           </th:block>
           <div class="blog_navigation">
             <ul>
-              <li class="blog_dot active" ><a th:href="@{/dich-sach-menu-thuc-an(page=0)}"> First</a></li>
+              <li th:if="${numberPage>0}" class="blog_dot active" ><a th:href="@{/dich-sach-menu-thuc-an(page=0)}"> First</a></li>
               <li th:if="${numberPage>0}" class="blog_dot active" style="margin-left: 10px" ><a th:href="@{/dich-sach-menu-thuc-an(page = ${list.number - 1})}">Previous</a> </li>
               <li th:if="${numberPage<list.totalPages - 1}" class="blog_dot active"  style="margin-left: 10px" ><a th:href="@{/dich-sach-menu-thuc-an(page = ${list.number + 1})}">Next</a> </li>
               <li class="blog_dot active" style="margin-left: 10px" > <a th:href="@{/dich-sach-menu-thuc-an(page = ${list.totalPages - 1})}">Last</a></li>

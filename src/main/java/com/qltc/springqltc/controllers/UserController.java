@@ -3,6 +3,7 @@ package com.qltc.springqltc.controllers;
 import com.qltc.springqltc.constants.MyConstants;
 import com.qltc.springqltc.domains.User;
 import com.qltc.springqltc.serviceimpl.UserServiceImpl;
+import com.qltc.springqltc.utils.AuthenticationUtils;
 import com.qltc.springqltc.utils.UploadFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,16 @@ public class UserController {
     UploadFile uploadFile = new UploadFile();
 
     @GetMapping(value = "thong-tin-ca-nhan")
-    public ModelAndView getProfile(@RequestParam(required = false,name = "username") String username){
+    public ModelAndView getProfile(@RequestParam(required = false,name = "username") String username,HttpServletRequest request){
         ModelAndView mv = new ModelAndView("user/profile");
-        User user = userService.findByUserName(username);
-        mv.addObject("profile",user);
+        boolean auth = AuthenticationUtils.middleWare(request);
+        if (auth) {
+            User user = userService.findByUserName(username);
+            mv.addObject("profile",user);
+        } else {
+            mv = new ModelAndView("redirect:/trang-chu");
+        }
+
         return mv;
     }
     @PostMapping(value = "doi-anh-dai-dien")

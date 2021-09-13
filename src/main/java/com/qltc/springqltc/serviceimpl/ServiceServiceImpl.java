@@ -29,4 +29,14 @@ public class ServiceServiceImpl implements ServiceService {
     public Page<Service> findAll(Pageable pageable) {
         return serviceRespository.findAll(pageable);
     }
+
+    @Override
+    public List<Service> getAll() {
+        return serviceRespository.getAll();
+    }
+
+    @Override
+    public Service findServiceById(int id) {
+        return serviceRespository.findServiceById(id);
+    }
 }

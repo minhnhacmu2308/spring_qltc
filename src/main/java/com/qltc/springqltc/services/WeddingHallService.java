@@ -12,4 +12,7 @@ public interface WeddingHallService {
 
     List<WeddingHall> findAll();
 
+    int numberViewCurrent(int id);
+
+    int updateView(int number ,int id);
 }
