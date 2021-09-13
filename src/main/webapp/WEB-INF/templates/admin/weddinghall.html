@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments :: html_head">
+
+</head>
+
+<body class="sb-nav-fixed">
+<nav th:replace="admin/fragments :: html_nav" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+</nav>
+<div  id="layoutSidenav">
+  <div th:replace="admin/fragments :: html_menu" id="layoutSidenav_nav">
+
+  </div>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Danh sách sảnh cưới</h1>
+        <div class="card mb-4">
+          <div class="card-header">
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalAdd">
+              Thêm
+            </button>
+          </div>
+          <div class="card-body">
+            <table id="datatablesSimple">
+              <thead>
+              <tr>
+                <th>STT</th>
+                <th>Ảnh</th>
+                <th>Tên sảnh</th>
+                <th>Giá tiền</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+
+              </tr>
+              </thead>
+              <tfoot>
+              <tr>
+                <th>STT</th>
+                <th>Ảnh</th>
+                <th>Tên sảnh</th>
+                <th>Giá tiền</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+              </tr>
+              </tfoot>
+              <tbody>
+              <th:block th:each="weddinghall : ${list}">
+              <tr>
+                <td th:text="${weddinghall.id}"></td>
+                <td>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalImg"><img
+                          style="width: 120px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
+                          class="img-fluid"></a>
+
+                </td>
+                <td th:text="${weddinghall.name}"></td>
+                <td th:text="${weddinghall.cost} + ' VNĐ '"></td>
+                <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalDes">Hay</a>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal">
+                    Sửa
+                  </button>
+                  <button type="button" class="btn btn-danger">
+                    Xóa
+                  </button>
+                </td>
+
+              </tr>
+              <!-- Modal img-->
+              <div class="modal fade" id="exampleModalImg" tabindex="-1"
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-m">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img style="width: 460px !important;height: 580px !important;"
+                           src="" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal img-->
+
+              <!-- Modal Descrip-->
+              <div class="modal fade" id="exampleModalDes" tabindex="-1"
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Bố già</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                              aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Descrup-->
+
+              <!-- Modal Update-->
+              <div class="modal fade" id="exampleModal" tabindex="-1"
+                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabell">Cập nhập</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                              aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="">
+                              <label for="name"
+                                     class="col-form-label">Tên sảnh:</label>
+                              <input type="text" class="form-control"
+                                     id="name">
+                            </div>
+                            <div class="">
+                              <label for="cost"
+                                     class="col-form-label">Giá tiền:</label>
+                              <input type="text" class="form-control"
+                                     id="cost">
+                            </div>
+                          </div>
+                          <div class="col-6 ">
+                            <div class="mb-4 mt-4">
+                              <label for="exampleFormControlFile12">Ảnh
+                                </label><br>
+                              <input type="file" class="form-control-file"
+                                     id="exampleFormControlFile12">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="">
+                          <label for="editor1" class="col-form-label">Mô tả
+                            :</label>
+                          <textarea name="description" id="editor1" cols="30"
+                                    rows="30"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary"
+                              data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Update-->
+              </th:block>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Add-->
+      <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabelll">Thêm mới</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="">
+                      <label for="addname"
+                             class="col-form-label">Tên sảnh:</label>
+                      <input type="text" class="form-control"
+                             id="addname">
+                    </div>
+                    <div class="">
+                      <label for="addcost"
+                             class="col-form-label">Giá tiền:</label>
+                      <input type="text" class="form-control"
+                             id="addcost">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="mb-4 mt-4">
+                      <label for="addexampleFormControlFile1">Ảnh
+                        </label><br>
+                      <input type="file" class="form-control-file"
+                             id="addexampleFormControlFile1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="">
+                  <label for="editor" class="col-form-label">Mô tả:</label>
+                  <textarea name="description" id="editor" cols="30"
+                            rows="30"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Add-->
+    </main>
+    <script>
+
+      ClassicEditor.create(document.querySelector('#editor')).then(eidt => {
+        console.log("da" + eidt);
+      })
+              .catch(error => {
+                console.error(error);
+              });
+
+    </script>
+    <script>
+
+      ClassicEditor.create(document.querySelector('#editor1')).then(eidt => {
+        console.log("da" + eidt);
+      })
+              .catch(error => {
+                console.error(error);
+              });
+
+    </script>
+    <footer th:replace="admin/fragments :: footer" class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Your Website 2021</div>
+          <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</body>
+
+</html>

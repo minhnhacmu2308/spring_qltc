@@ -15,6 +15,9 @@ public interface WeddingHallRespository extends JpaRepository<WeddingHall,Intege
     @Query(value = "SELECT * FROM weddinghall LIMIT ?",nativeQuery = true)
     List<WeddingHall> getWeddingHallByNumber(int number);
 
+    @Query(value = "SELECT * FROM weddinghall WHERE status = 1",nativeQuery = true)
+    List<WeddingHall> getWeddingHall();
+
     WeddingHall findById(int id);
 
     List<WeddingHall> findAll();

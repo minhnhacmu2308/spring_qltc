@@ -8,6 +8,8 @@ public interface WeddingHallService {
 
     List<WeddingHall> getWeddingHallByNumber(int number);
 
+    List<WeddingHall> getWeddingHall();
+
     WeddingHall findById(int id);
 
     List<WeddingHall> findAll();

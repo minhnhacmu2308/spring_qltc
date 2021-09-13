@@ -19,6 +19,11 @@ public class WeddingHallServiceImpl implements WeddingHallService {
     }
 
     @Override
+    public List<WeddingHall> getWeddingHall() {
+        return weddingHallRespository.getWeddingHall();
+    }
+
+    @Override
     public WeddingHall findById(int id) {
         return weddingHallRespository.findById(id);
     }
