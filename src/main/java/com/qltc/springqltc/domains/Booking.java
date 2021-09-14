@@ -32,7 +32,7 @@ public class Booking {
     private int status;
 
     @ManyToOne
-    @JoinColumn(name = "id_webdinghall",referencedColumnName = "id")
+    @JoinColumn(name = "id_weddinghall",referencedColumnName = "id")
     private WeddingHall weddingHall;
 
     @ManyToOne

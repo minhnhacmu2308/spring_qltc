@@ -8,6 +8,8 @@ import com.qltc.springqltc.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookingServiceImpl implements BookingService {
     @Autowired
@@ -19,6 +21,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking save(Booking booking) {
         return bookingRespository.save(booking);
+    }
+
+    @Override
+    public List<Booking> check(int id) {
+        return bookingRespository.check(id);
     }
 
     @Override

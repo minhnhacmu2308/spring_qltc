@@ -1,5 +1,6 @@
 package com.qltc.springqltc.respositorys;
 
+import com.qltc.springqltc.domains.Booking;
 import com.qltc.springqltc.domains.WeddingHall;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,7 +19,21 @@ public interface WeddingHallRespository extends JpaRepository<WeddingHall,Intege
     @Query(value = "SELECT * FROM weddinghall WHERE status = 1",nativeQuery = true)
     List<WeddingHall> getWeddingHall();
 
+
+
+    @Modifying
+    @Transactional
+    @Query(value = "Update weddinghall SET name = ? , cost = ?, description = ?, image = ? WHERE id = ?",nativeQuery = true)
+    int update(String name, int cost,String description, String image, int id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM weddinghall WHERE id = ?",nativeQuery = true)
+    int delete( int id);
+
     WeddingHall findById(int id);
+
+    WeddingHall save(WeddingHall weddingHall);
 
     List<WeddingHall> findAll();
 

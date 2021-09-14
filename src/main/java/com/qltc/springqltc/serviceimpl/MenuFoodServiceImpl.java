@@ -39,4 +39,24 @@ public class MenuFoodServiceImpl implements MenuFoodService {
     public MenuFood findMenuById(int id) {
         return menuFoodRespository.findMenuFoodById(id);
     }
+
+    @Override
+    public MenuFood save(MenuFood menuFood) {
+        return menuFoodRespository.save(menuFood);
+    }
+
+    @Override
+    public List<MenuFood> getSer() {
+        return menuFoodRespository.getSer();
+    }
+
+    @Override
+    public int update(String name, int cost,String description, String image, int id) {
+        return menuFoodRespository.update(name,cost,description,image,id);
+    }
+
+    @Override
+    public int delete(int id) {
+        return menuFoodRespository.delete(id);
+    }
 }

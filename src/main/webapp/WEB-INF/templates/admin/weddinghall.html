@@ -19,7 +19,9 @@
         <h1 class="mt-4">Danh sách sảnh cưới</h1>
         <div class="card mb-4">
           <div class="card-header">
-
+            <div th:if="${msg}" class="alert alert-info">
+              <strong th:text="${msg}"></strong>
+            </div>
             <button type="button" class="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#exampleModalAdd">
               Thêm
@@ -49,38 +51,67 @@
               </tr>
               </tfoot>
               <tbody>
+              <input type="hidden" th:value="${list.size()}" id="dodai" />
               <th:block th:each="weddinghall : ${list}">
               <tr>
                 <td th:text="${weddinghall.id}"></td>
                 <td>
-                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalImg"><img
+                  <a href="" data-bs-toggle="modal" th:data-bs-target="'#exampleModalImg'+ ${weddinghall.id}"><img
                           style="width: 120px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
                           class="img-fluid"></a>
 
                 </td>
                 <td th:text="${weddinghall.name}"></td>
                 <td th:text="${weddinghall.cost} + ' VNĐ '"></td>
-                <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalDes">Hay</a>
+                <td><a href="" data-bs-toggle="modal" th:data-bs-target="'#exampleModalDes'+${weddinghall.id}">Chi tiết</a>
                 </td>
                 <td>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#exampleModal">
+                          th:data-bs-target="'#exampleModal'+${weddinghall.id}">
                     Sửa
                   </button>
-                  <button type="button" class="btn btn-danger">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                          th:data-bs-target="'#idModelDel'+${weddinghall.id}" >
                     Xóa
                   </button>
+                  <div class="modal fade" th:id="'idModelDel' + ${weddinghall.id}" tabindex="-1"
+                       aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Sảnh cưới :  <span th:text="${weddinghall.name}"></span>
+                          <form th:action="@{/admin/weddinghall-delete}" method="post">
+                            <input type="hidden" class="form-control" id="id" name="id" th:value="${weddinghall.id}">
+                            <div class="modal-footer" style="margin-top: 20px">
+                              <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">
+                                Close
+                              </button>
+                              <button type="submit" class="btn btn-danger">Xóa</button>
+
+                            </div>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 </td>
 
               </tr>
               <!-- Modal img-->
-              <div class="modal fade" id="exampleModalImg" tabindex="-1"
+              <div class="modal fade" th:id="'exampleModalImg'+${weddinghall.id}" tabindex="-1"
                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-m">
                   <div class="modal-content">
                     <div class="modal-body">
                       <img style="width: 460px !important;height: 580px !important;"
-                           src="" class="img-fluid">
+                           th:src="@{'/user/assets/images/'+${weddinghall.image}}" class="img-fluid">
                     </div>
                   </div>
                 </div>
@@ -88,17 +119,17 @@
               <!-- Modal img-->
 
               <!-- Modal Descrip-->
-              <div class="modal fade" id="exampleModalDes" tabindex="-1"
+              <div class="modal fade" th:id="'exampleModalDes'+${weddinghall.id}" tabindex="-1"
                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Bố già</h5>
+                      <h5 class="modal-title" id="exampleModalLabel" th:text="${weddinghall.name}"></h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal"
                               aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                      <p th:text="${weddinghall.description}"></p>
                     </div>
 
                   </div>
@@ -107,7 +138,7 @@
               <!-- Modal Descrup-->
 
               <!-- Modal Update-->
-              <div class="modal fade" id="exampleModal" tabindex="-1"
+              <div class="modal fade" th:id="'exampleModal'+${weddinghall.id}" tabindex="-1"
                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
@@ -117,20 +148,22 @@
                               aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <div class="row">
+                      <form enctype="multipart/form-data" th:action="@{/admin/weddinghall-update}" method="post">
+                        <input type="hidden" th:value="${weddinghall.id}" name="id">
+                        <input type="text" th:value="${weddinghall.image}" name="img">
+                          <div class="row">
                           <div class="col-6">
                             <div class="">
                               <label for="name"
                                      class="col-form-label">Tên sảnh:</label>
                               <input type="text" class="form-control"
-                                     id="name">
+                                     id="name" name="namehall" th:value="${weddinghall.name}">
                             </div>
                             <div class="">
                               <label for="cost"
                                      class="col-form-label">Giá tiền:</label>
                               <input type="text" class="form-control"
-                                     id="cost">
+                                     id="cost" name="cost" th:value="${weddinghall.cost}">
                             </div>
                           </div>
                           <div class="col-6 ">
@@ -138,24 +171,25 @@
                               <label for="exampleFormControlFile12">Ảnh
                                 </label><br>
                               <input type="file" class="form-control-file"
-                                     id="exampleFormControlFile12">
+                                     id="exampleFormControlFile12" name="file">
                             </div>
                           </div>
                         </div>
 
                         <div class="">
-                          <label for="editor1" class="col-form-label">Mô tả
+                          <label th:for="'editor'+${weddinghall.id}" class="col-form-label">Mô tả
                             :</label>
-                          <textarea name="description" id="editor1" cols="30"
-                                    rows="30"></textarea>
+                          <textarea name="description" th:id="'editor'+${weddinghall.id}" cols="30"
+                                    rows="30" th:text="${weddinghall.description}"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"
+                                  data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary"
-                              data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -177,20 +211,20 @@
                       aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form enctype="multipart/form-data" th:action="@{/admin/weddinghall-add}" method="post">
                 <div class="row">
                   <div class="col-6">
                     <div class="">
                       <label for="addname"
                              class="col-form-label">Tên sảnh:</label>
                       <input type="text" class="form-control"
-                             id="addname">
+                             id="addname" name="namehall">
                     </div>
                     <div class="">
                       <label for="addcost"
                              class="col-form-label">Giá tiền:</label>
                       <input type="text" class="form-control"
-                             id="addcost">
+                             id="addcost" name="cost">
                     </div>
                   </div>
                   <div class="col-6 ">
@@ -198,7 +232,7 @@
                       <label for="addexampleFormControlFile1">Ảnh
                         </label><br>
                       <input type="file" class="form-control-file"
-                             id="addexampleFormControlFile1">
+                             id="addexampleFormControlFile1" name="file">
                     </div>
                   </div>
                 </div>
@@ -208,12 +242,13 @@
                   <textarea name="description" id="editor" cols="30"
                             rows="30"></textarea>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save </button>
+                </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save </button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -231,14 +266,36 @@
     </script>
     <script>
 
-      ClassicEditor.create(document.querySelector('#editor1')).then(eidt => {
-        console.log("da" + eidt);
-      })
-              .catch(error => {
-                console.error(error);
-              });
+      var dodai = document.getElementById("dodai").value;
+
+      for(var i = 1;i<=dodai+10;i++){
+        var name = "#editor"  + i
+        ClassicEditor.create(document.querySelector(name)).then(eidt => {
+          console.log("da" + eidt);
+        })
+                .catch(error => {
+                  console.error(error);
+                });
+      }
+
 
     </script>
+  <!--  <script>
+
+      var dodai = document.getElementById("dodai").value;
+
+      for (var i = 1; i < dodai; i++) {
+        var name = "editor" + i
+        ClassicEditor.create(document.querySelector(name)).then(eidt => {
+          console.log("da" + eidt);
+        })
+                .catch(error => {
+                  console.error(error);
+                });
+
+      }
+
+    </script>-->
     <footer th:replace="admin/fragments :: footer" class="py-4 bg-light mt-auto">
       <div class="container-fluid px-4">
         <div class="d-flex align-items-center justify-content-between small">

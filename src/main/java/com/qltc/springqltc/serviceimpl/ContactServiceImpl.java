@@ -6,6 +6,8 @@ import com.qltc.springqltc.services.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContactServiceImpl implements ContactService {
 
@@ -16,4 +18,7 @@ public class ContactServiceImpl implements ContactService {
     public Contact save(Contact contact) {
         return contactRespository.save(contact);
     }
+
+    @Override
+    public List<Contact> findAll(){ return contactRespository.findAll();}
 }

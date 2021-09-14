@@ -3,8 +3,12 @@ package com.qltc.springqltc.services;
 import com.qltc.springqltc.domains.BookService;
 import com.qltc.springqltc.domains.Booking;
 
+import java.util.List;
+
 public interface BookingService {
     Booking save(Booking booking);
+
+    List<Booking> check(int id);
 
     Booking findTop();
 
