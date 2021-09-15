@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments :: html_head">
+
+</head>
+
+<body class="sb-nav-fixed">
+<nav th:replace="admin/fragments :: html_nav" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+</nav>
+<div  id="layoutSidenav">
+  <div th:replace="admin/fragments :: html_menu" id="layoutSidenav_nav">
+
+  </div>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Danh sách tiệc cưới đã đặt</h1>
+        <div class="card mb-4">
+          <div class="card-header">
+            <div th:if="${msg}" class="alert alert-info">
+              <strong th:text="${msg}"></strong>
+            </div>
+
+          </div>
+          <div class="card-body">
+            <table id="datatablesSimple">
+              <thead>
+              <tr>
+                <th>STT</th>
+                <th>Khách hàng</th>
+                <th>Sảnh</th>
+                <th>Ngày tổ chức</th>
+                <th>Thời gian</th>
+                <th>Menu thức ăn</th>
+                <th>Dịch vụ</th>
+                <th>Tổng tiền</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tfoot>
+              <tr>
+                <th>STT</th>
+                <th>Khách hàng</th>
+                <th>Sảnh</th>
+                <th>Ngày tổ chức</th>
+                <th>Thời gian</th>
+                <th>Menu thức ăn</th>
+                <th>Dịch vụ</th>
+                <th>Tổng tiền</th>
+                <th></th>
+              </tr>
+              </tfoot>
+              <tbody>
+
+              <th:block th:each="weddinghall : ${list}">
+                <tr>
+                  <td th:text="${weddinghall.id}"></td>
+                  <td th:text="${weddinghall.user.fullName}"></td>
+                  <td th:text="${weddinghall.weddingHall.name}"></td>
+                  <td th:text="${weddinghall.dateHeld}"></td>
+                  <td th:text="${weddinghall.shift.name}"></td>
+                  <td th:text="${weddinghall.menuFood.name}"></td>
+                  <td><a href="" data-bs-toggle="modal" th:data-bs-target="'#exampleModalDes'+${weddinghall.id}">Danh sách</a>
+                  </td>
+                  <td th:text="${weddinghall.total} + ' VNĐ '"></td>
+                  <td>
+                    <th:block th:if="${weddinghall.status == 0 }">
+                      <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                              th:data-bs-target="'#idModelDel'+${weddinghall.id}" >
+                        Thanh toán
+                      </button>
+                      <div class="modal fade" th:id="'idModelDel' + ${weddinghall.id}" tabindex="-1"
+                           aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Thanh toán</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col-6">
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Khách hàng</label>:
+                                          <span th:text="${weddinghall.user.fullName}"></span>
+                                  </div>
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Sảnh cưới</label>:
+                                    <span th:text="${weddinghall.weddingHall.name}"></span>
+                                  </div>
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Ngày tổ chức</label>:
+                                    <span th:text="${weddinghall.dateHeld}"></span>
+                                  </div>
+
+                                </div>
+                                <div class="col-6 ">
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Thời gian</label>:
+                                    <span th:text="${weddinghall.shift.name}"></span>
+                                  </div>
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Menu thức ăn</label>:
+                                    <span th:text="${weddinghall.menuFood.name}"></span>
+                                  </div>
+                                  <div class="">
+                                    <label  class="col-form-label" style="font-weight:bold;width : 120px">Tổng tiền</label>:
+                                    <span th:text="${weddinghall.total} + ' VNĐ '"></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <form th:action="@{/admin/booking-delete}" method="post">
+                                <input type="hidden" class="form-control" id="id" name="id" th:value="${weddinghall.id}">
+                                <div class="modal-footer" style="margin-top: 20px">
+                                  <button type="button" class="btn btn-secondary"
+                                          data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                  <button type="submit" class="btn btn-danger">Đồng ý</button>
+                                </div>
+                              </form>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </th:block>
+                    <th:block th:if="${weddinghall.status == 1 }">
+                      <span>Đã thanh toán</span>
+                    </th:block>
+                  </td>
+
+                </tr>
+
+
+                <!-- Modal Descrip-->
+                <div class="modal fade" th:id="'exampleModalDes'+${weddinghall.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" >Danh sách dịch vụ đi kèm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <th:block th:each="weddinghallb : ${listb}">
+                          <th:block th:if="${weddinghallb.booking.id == weddinghall.id }">
+                            => <span th:text="${weddinghallb.service.name}"></span><br>
+                          </th:block>
+                        </th:block>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal Descrup-->
+
+
+              </th:block>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer th:replace="admin/fragments :: footer" class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Your Website 2021</div>
+          <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</body>
+
+</html>

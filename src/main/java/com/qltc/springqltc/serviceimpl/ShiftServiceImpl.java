@@ -23,4 +23,24 @@ public class ShiftServiceImpl implements ShiftService {
         return shiftRespository.findShiftById(id);
     }
 
+    @Override
+    public Shift save(Shift shift) {
+        return shiftRespository.save(shift);
+    }
+
+    @Override
+    public List<Shift> getSer() {
+        return shiftRespository.getSer();
+    }
+
+    @Override
+    public int update(String name, int cost, int id) {
+        return shiftRespository.update(name,cost,id);
+    }
+
+    @Override
+    public int delete(int id) {
+        return shiftRespository.delete(id);
+    }
+
 }

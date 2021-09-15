@@ -16,48 +16,113 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-
+        <p style="display:none" id="c1" th:text="${ctc }"></p>
+        <p style="display:none" id="c2" th:text="${chd }"></p>
+        <p style="display:none" id="c3" th:text="${ckd }"></p>
+        <p style="display:none" id="y1" th:text="${y2021 }"></p>
+        <p style="display:none" id="y2" th:text="${y2020 }"></p>
+        <p style="display:none" id="y3" th:text="${y2019 }"></p>
+        <p style="display:none" id="q1" th:text="${q1 }" ></p>
+        <p style="display:none" id="q2" th:text="${q2 }"></p>
+        <p style="display:none" id="q3" th:text="${q3 }"></p>
+        <p style="display:none" id="q4" th:text="${q4 }"></p>
+        <p style="display:none" id="m1" th:text="${m1 }" ></p>
+        <p style="display:none" id="m2" th:text="${m2 }"></p>
+        <p style="display:none" id="m3" th:text="${m3 }"></p>
+        <p style="display:none" id="m4" th:text="${m4 }"></p>
+        <p style="display:none" id="m5" th:text="${m5 }"></p>
+        <p style="display:none" id="m6" th:text="${m6 }"></p>
+        <p style="display:none" id="m7" th:text="${m7 }"></p>
+        <p style="display:none" id="m8" th:text="${m8 }"></p>
+        <p style="display:none" id="m9" th:text="${m9 }"></p>
+        <p style="display:none" id="m10" th:text="${m10 }"></p>
+        <p style="display:none" id="m11" th:text="${m11 }"></p>
+        <p style="display:none" id="m12" th:text="${m12 }"></p>
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item active"></li>
         </ol>
         <div class="row">
           <div class="col-xl-3 col-md-6">
             <div class="card bg-primary text-white mb-4">
-              <div class="card-body">5 Phim đang chiếu</div>
+              <div class="card-body"><span th:text="${W} + ' Sảnh cưới'"></span></div>
               <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="/admin/sanh-cuoi">Xem chi tiết</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-md-6">
             <div class="card bg-warning text-white mb-4">
-              <div class="card-body">7 Phim sắp chiếu</div>
+              <div class="card-body"><span th:text="${S} + ' Dịch vụ ưu đãi'"></span></div>
               <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="/admin/dich-vu">Xem chi tiết</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-md-6">
             <div class="card bg-success text-white mb-4">
-              <div class="card-body">12 Khách hàng</div>
+              <div class="card-body"><span th:text="${M} + ' Menu thức ăn'"></span></div>
               <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="/admin/menu-food">Xem chi tiết</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-md-6">
             <div class="card bg-danger text-white mb-4">
-              <div class="card-body">5 Booking chưa xử lý</div>
+              <div class="card-body"><span th:text="${B} + ' Tiệc cưới'"></span></div>
               <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="/admin/tiec-cuoi">Xem chi tiết</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
               </div>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Doanh thu mỗi năm
+              </div>
+              <div class="card-body"><canvas id="myBarChart1" width="100%" height="50"></canvas></div>
+
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-pie me-1"></i>
+                Pie Chart Example
+              </div>
+              <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                Doanh thu mỗi tháng
+              </div>
+              <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-chart-pie me-1"></i>
+                Doanh thu mỗi quý
+              </div>
+              <div class="card-body"><canvas id="myBarChart2" width="100%" height="50"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </main>
     <footer th:replace="admin/fragments :: footer" class="py-4 bg-light mt-auto">
@@ -74,7 +139,10 @@
     </footer>
   </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/admin1/assets/assets/demo/chart-area-demo.js}"></script>
+<script th:src="@{/admin1/assets/assets/demo/chart-bar-demo.js}"></script>
+<script th:src="@{/admin1/assets/assets/demo/chart-pie-demo.js}"></script>
 </body>
 
 </html>

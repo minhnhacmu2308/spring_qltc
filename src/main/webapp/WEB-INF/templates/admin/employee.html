@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments :: html_head">
+
+</head>
+
+<body class="sb-nav-fixed">
+<nav th:replace="admin/fragments :: html_nav" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+
+</nav>
+<div  id="layoutSidenav">
+  <div th:replace="admin/fragments :: html_menu" id="layoutSidenav_nav">
+
+  </div>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Danh sách nhân viên</h1>
+        <div class="card mb-4">
+          <div class="card-header">
+            <div th:if="${msg}" class="alert alert-info">
+              <strong th:text="${msg}"></strong>
+            </div>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModalAdd">
+              Thêm
+            </button>
+          </div>
+          <div class="card-body">
+            <table id="datatablesSimple">
+              <thead>
+              <tr>
+                <th>STT</th>
+                <th>Ảnh</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Username</th>
+                <th>Hành động</th>
+              </tr>
+              </thead>
+              <tfoot>
+              <tr>
+                <th>STT</th>
+                <th>Ảnh</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Username</th>
+                <th>Hành động</th>
+              </tr>
+              </tfoot>
+              <tbody>
+
+              <th:block th:each="weddinghall : ${list}">
+                <tr>
+                  <td th:text="${weddinghall.id}"></td>
+                  <td>
+                    <img style="width: 120px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
+                         class="img-fluid">
+                  </td>
+                  <td th:text="${weddinghall.fullName}"></td>
+                  <td th:text="${weddinghall.email}"></td>
+                  <td th:text="${weddinghall.phoneNumber}"></td>
+                  <td th:text="${weddinghall.address}"></td>
+                  <td th:text="${weddinghall.userName}"></td>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            th:data-bs-target="'#exampleModal'+${weddinghall.id}">
+                      Sửa
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            th:data-bs-target="'#idModelDel'+${weddinghall.id}" >
+                      Xóa
+                    </button>
+                    <div class="modal fade" th:id="'idModelDel' + ${weddinghall.id}" tabindex="-1"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Nhân viên :  <span th:text="${weddinghall.fullName}"></span>
+                            <form th:action="@{/admin/user-delete}" method="post">
+                              <input type="hidden" class="form-control" id="id" name="id" th:value="${weddinghall.id}">
+                              <div class="modal-footer" style="margin-top: 20px">
+                                <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                  Close
+                                </button>
+                                <button type="submit" class="btn btn-danger">Xóa</button>
+
+                              </div>
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
+                </tr>
+
+
+                <!-- Modal Update-->
+                <div class="modal fade" th:id="'exampleModal'+${weddinghall.id}" tabindex="-1"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabell">Cập nhập</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form enctype="multipart/form-data" th:action="@{/admin/user-update}" method="post">
+                          <input type="hidden" th:value="${weddinghall.id}" name="id">
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="">
+                                <label for="addname"
+                                       class="col-form-label">Họ Tên:</label>
+                                <input type="text" class="form-control"
+                                       id="addname" name="fullname" th:value="${weddinghall.fullName}">
+                              </div>
+                              <div class="">
+                                <label for="addcost"
+                                       class="col-form-label">Email:</label>
+                                <input type="email" class="form-control"
+                                       id="addcost" name="email" th:value="${weddinghall.email}">
+                              </div>
+                              <div class="">
+                                <label for="addnam"
+                                       class="col-form-label">Số điện thoại:</label>
+                                <input type="text" class="form-control"
+                                       id="addnam" name="phonenumber" th:value="${weddinghall.phoneNumber}">
+                              </div>
+                              <div class="">
+                                <label for="addcos"
+                                       class="col-form-label">Địa chỉ:</label>
+                                <input type="text" class="form-control"
+                                       id="addcos" name="address" th:value="${weddinghall.address}">
+                              </div>
+                            </div>
+                            <div class="col-6 ">
+                              <div class="">
+                                <label for="addnamee"
+                                       class="col-form-label">Username:</label>
+                                <input type="text" class="form-control"
+                                       id="addnamee" name="username" th:value="${weddinghall.userName}">
+                              </div>
+                              <div class="">
+                                <label for="addcoste"
+                                       class="col-form-label">Mật khẩu:</label>
+                                <input type="password" class="form-control"
+                                       id="addcoste" name="password">
+                              </div>
+                              <div class="mb-4 mt-4">
+                                <label for="addexampleFormControlFile1">Ảnh
+                                </label><br>
+                                <input type="file" class="form-control-file"
+                                       id="addexampleFormControlFile1" name="file">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                 <!--Modal Update-->
+              </th:block>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--Modal Add-->
+      <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
+           aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabelll">Thêm mới</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form enctype="multipart/form-data" th:action="@{/admin/user-add}" method="post">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="">
+                      <label for="addname"
+                             class="col-form-label">Họ Tên:</label>
+                      <input type="text" class="form-control"
+                             id="addname" name="fullname">
+                    </div>
+                    <div class="">
+                      <label for="addcost"
+                             class="col-form-label">Email:</label>
+                      <input type="email" class="form-control"
+                             id="addcost" name="email">
+                    </div>
+                    <div class="">
+                      <label for="addnam"
+                             class="col-form-label">Số điện thoại:</label>
+                      <input type="text" class="form-control"
+                             id="addnam" name="phonenumber">
+                    </div>
+                    <div class="">
+                      <label for="addcos"
+                             class="col-form-label">Địa chỉ:</label>
+                      <input type="text" class="form-control"
+                             id="addcos" name="address">
+                    </div>
+                  </div>
+                  <div class="col-6 ">
+                    <div class="">
+                      <label for="addnamee"
+                             class="col-form-label">Username:</label>
+                      <input type="text" class="form-control"
+                             id="addnamee" name="username">
+                    </div>
+                    <div class="">
+                      <label for="addcoste"
+                             class="col-form-label">Mật khẩu:</label>
+                      <input type="password" class="form-control"
+                             id="addcoste" name="password">
+                    </div>
+                    <div class="mb-4 mt-4">
+                      <label for="addexampleFormControlFile1">Ảnh
+                      </label><br>
+                      <input type="file" class="form-control-file"
+                             id="addexampleFormControlFile1" name="file">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- Modal Add-->
+    </main>
+
+    <footer th:replace="admin/fragments :: footer" class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Your Website 2021</div>
+          <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</body>
+
+</html>

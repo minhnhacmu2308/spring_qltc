@@ -1,6 +1,7 @@
 package com.qltc.springqltc.serviceimpl;
 
 import com.qltc.springqltc.domains.Service;
+import com.qltc.springqltc.domains.WeddingHall;
 import com.qltc.springqltc.respositorys.ServiceRespository;
 import com.qltc.springqltc.services.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,25 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service findServiceById(int id) {
         return serviceRespository.findServiceById(id);
+    }
+
+    @Override
+    public Service save(Service service) {
+        return serviceRespository.save(service);
+    }
+
+    @Override
+    public List<Service> getSer() {
+        return serviceRespository.getSer();
+    }
+
+    @Override
+    public int update(String name, int cost,String description, String image, int id) {
+        return serviceRespository.update(name,cost,description,image,id);
+    }
+
+    @Override
+    public int delete(int id) {
+        return serviceRespository.delete(id);
     }
 }

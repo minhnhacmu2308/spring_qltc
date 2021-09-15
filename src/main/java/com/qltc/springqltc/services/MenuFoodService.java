@@ -1,6 +1,7 @@
 package com.qltc.springqltc.services;
 
 import com.qltc.springqltc.domains.MenuFood;
+import com.qltc.springqltc.domains.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,4 +18,11 @@ public interface MenuFoodService {
     List<MenuFood> getAll();
 
     MenuFood findMenuById(int id);
+
+    MenuFood save(MenuFood menuFood);
+
+    List<MenuFood> getSer();
+    int update(String name, int cost,String description, String image, int id);
+
+    int delete(int id);
 }
