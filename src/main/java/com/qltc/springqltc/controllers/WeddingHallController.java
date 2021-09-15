@@ -43,6 +43,9 @@ public class WeddingHallController {
     @Autowired
     BookingServiceImpl bookingService;
 
+    @Autowired
+    UserServiceImpl userService;
+
     @GetMapping(value = "sanh-cuoi")
     public ModelAndView getWeddingHall(@RequestParam("page") Optional<Integer> page){
         ModelAndView mv = new ModelAndView("user/weddinghall");
@@ -112,6 +115,7 @@ public class WeddingHallController {
         ResponseAjax rA = new ResponseAjax();
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute(MyConstants.SESSION_USER);
+
         String idWeddingHall = (String) request.getParameter("idWeddingHall");
         String idShift = (String) request.getParameter("idShift");
         String idService = (String) request.getParameter("idService");
@@ -139,6 +143,7 @@ public class WeddingHallController {
                     booking.setStatus(0);
                     booking.setMenuFood(menuFood);
                     booking.setTotal(total);
+                    booking.setUser(user);
                     booking.setShift(shift);
                     booking.setDateHeld(dateHeld);
                     Booking result = bookingService.save(booking);
@@ -162,6 +167,7 @@ public class WeddingHallController {
                     booking.setMenuFood(menuFood);
                     booking.setTotal(total);
                     booking.setShift(shift);
+                    booking.setUser(user);
                     booking.setDateHeld(dateHeld);
                     Booking result = bookingService.save(booking);
                     List<Integer> arrSeat = StringUtils.convertStringArray(idService);

@@ -7,6 +7,7 @@ import com.qltc.springqltc.domains.Service;
 import com.qltc.springqltc.domains.User;
 import com.qltc.springqltc.serviceimpl.ContactServiceImpl;
 import com.qltc.springqltc.serviceimpl.UserServiceImpl;
+import com.qltc.springqltc.utils.EncrytedPasswordUtils;
 import com.qltc.springqltc.utils.UploadFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import java.util.List;
 public class AdminUserController {
     @Autowired
     UserServiceImpl userService ;
-
+    EncrytedPasswordUtils encrytedPasswordUtils = new EncrytedPasswordUtils();
     @GetMapping(value = "/khach-hang")
     public ModelAndView index(){
         ModelAndView mv = new ModelAndView("admin/customer");
@@ -51,15 +52,17 @@ public class AdminUserController {
         String address = request.getParameter("address");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String passwordEncryte = encrytedPasswordUtils.md5(password);
         String anh = uploadFile.upload(request,image);
         User user = new User();
-        Role role = userService.findRoleById(1);
+        Role role = new Role();
+        role.setId(3);
         user.setFullName(fullname);
         user.setEmail(email);
         user.setPhoneNumber(phonenumber);
         user.setAddress(address);
         user.setUserName(username);
-        user.setPassword(password);
+        user.setPassword(passwordEncryte);
         user.setImage(anh);
         user.setEnable(1);
         user.setRole(role);
@@ -71,25 +74,40 @@ public class AdminUserController {
         }
         return mv;
     }
-    /*@PostMapping(value = "/service-update")
+    @PostMapping(value = "/user-update")
     public ModelAndView update(HttpServletRequest request,@RequestParam("file") MultipartFile image){
-        ModelAndView mv = new ModelAndView("redirect:dich-vu");
-        String name = request.getParameter("namehall");
-        String cost = request.getParameter("cost");
-        String img = request.getParameter("img");
-        int costhall = Integer.parseInt(cost);
-        int id = Integer.parseInt(request.getParameter("id"));
-        String description = request.getParameter("description");
+        ModelAndView mv = new ModelAndView("redirect:nhan-vien");
+        String fullname = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String phonenumber = request.getParameter("phonenumber");
+        String address = request.getParameter("address");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String passwordEncryte = encrytedPasswordUtils.md5(password);
         String anh = uploadFile.upload(request,image);
-        if(!anh.isEmpty()){
-            serviceService.update(name,costhall,description,anh,id);
-            mv.addObject("msg",MyConstants.MSG_SUCCESS);
-        }else{
-            serviceService.update(name,costhall,description,img,id);
-            mv.addObject("msg",MyConstants.MSG_SUCCESS);
+        int id = Integer.parseInt(request.getParameter("id"));
+        User user = userService.findById(id);
+        if (!password.isEmpty()){
+            if(!anh.isEmpty()){
+                userService.update(fullname,email,phonenumber,address,username,passwordEncryte,anh,id);
+                mv.addObject("msg",MyConstants.MSG_SUCCESS);
+            }else{
+                userService.update(fullname,email,phonenumber,address,username,passwordEncryte,user.getImage(),id);
+                mv.addObject("msg",MyConstants.MSG_SUCCESS);
+            }
         }
+        else{
+            if(!anh.isEmpty()){
+                userService.update(fullname,email,phonenumber,address,username,user.getPassword(),anh,id);
+                mv.addObject("msg",MyConstants.MSG_SUCCESS);
+            }else{
+                userService.update(fullname,email,phonenumber,address,username,user.getPassword(),user.getImage(),id);
+                mv.addObject("msg",MyConstants.MSG_SUCCESS);
+            }
+        }
+
         return mv;
-    }*/
+    }
     @PostMapping(value = "/user-delete")
     public ModelAndView add(HttpServletRequest request){
         ModelAndView mv = new ModelAndView("redirect:nhan-vien");

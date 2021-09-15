@@ -41,4 +41,7 @@ public interface ServiceRespository extends PagingAndSortingRepository<Service,I
     @Transactional
     @Query(value = "UPDATE service SET status = 0 WHERE id = ?",nativeQuery = true)
     int delete( int id);
+
+    @Query(value = "SELECT COUNT(id) FROM service ",nativeQuery = true)
+    int countS();
 }

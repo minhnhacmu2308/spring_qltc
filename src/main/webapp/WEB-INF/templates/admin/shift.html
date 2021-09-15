@@ -16,7 +16,7 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-        <h1 class="mt-4">Danh sách nhân viên</h1>
+        <h1 class="mt-4">Danh sách các ca thời gian tổ chức</h1>
         <div class="card mb-4">
           <div class="card-header">
             <div th:if="${msg}" class="alert alert-info">
@@ -32,41 +32,33 @@
               <thead>
               <tr>
                 <th>STT</th>
-                <th>Ảnh</th>
-                <th>Họ tên</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Username</th>
+                <th>Tên</th>
+
+                <th>Giá tiền</th>
+
                 <th>Hành động</th>
+
               </tr>
               </thead>
               <tfoot>
               <tr>
                 <th>STT</th>
-                <th>Ảnh</th>
-                <th>Họ tên</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Địa chỉ</th>
-                <th>Username</th>
+                <th>Tên</th>
+
+                <th>Giá tiền</th>
+
                 <th>Hành động</th>
               </tr>
               </tfoot>
               <tbody>
-
+              <input type="hidden" th:value="${list.size()}" id="dodai" />
               <th:block th:each="weddinghall : ${list}">
                 <tr>
                   <td th:text="${weddinghall.id}"></td>
-                  <td>
-                    <img style="width: 120px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
-                         class="img-fluid">
-                  </td>
-                  <td th:text="${weddinghall.fullName}"></td>
-                  <td th:text="${weddinghall.email}"></td>
-                  <td th:text="${weddinghall.phoneNumber}"></td>
-                  <td th:text="${weddinghall.address}"></td>
-                  <td th:text="${weddinghall.userName}"></td>
+
+                  <td th:text="${weddinghall.name}"></td>
+                  <td th:text="${weddinghall.cost} + ' VNĐ '"></td>
+
                   <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             th:data-bs-target="'#exampleModal'+${weddinghall.id}">
@@ -86,8 +78,8 @@
                                     aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            Nhân viên :  <span th:text="${weddinghall.fullName}"></span>
-                            <form th:action="@{/admin/user-delete}" method="post">
+                           <span th:text="${weddinghall.name}"></span>
+                            <form th:action="@{/admin/shift-delete}" method="post">
                               <input type="hidden" class="form-control" id="id" name="id" th:value="${weddinghall.id}">
                               <div class="modal-footer" style="margin-top: 20px">
                                 <button type="button" class="btn btn-secondary"
@@ -108,10 +100,12 @@
                 </tr>
 
 
+
+
                 <!-- Modal Update-->
                 <div class="modal fade" th:id="'exampleModal'+${weddinghall.id}" tabindex="-1"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
+                  <div class="modal-dialog ">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabell">Cập nhập</h5>
@@ -119,56 +113,25 @@
                                 aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form enctype="multipart/form-data" th:action="@{/admin/user-update}" method="post">
+                        <form enctype="multipart/form-data" th:action="@{/admin/shift-update}" method="post">
                           <input type="hidden" th:value="${weddinghall.id}" name="id">
-                          <div class="row">
-                            <div class="col-6">
+
                               <div class="">
-                                <label for="addname"
-                                       class="col-form-label">Họ Tên:</label>
+                                <label for="name"
+                                       class="col-form-label">Tên:</label>
                                 <input type="text" class="form-control"
-                                       id="addname" name="fullname" th:value="${weddinghall.fullName}">
+                                       id="name" name="namehall" th:value="${weddinghall.name}">
                               </div>
                               <div class="">
-                                <label for="addcost"
-                                       class="col-form-label">Email:</label>
-                                <input type="email" class="form-control"
-                                       id="addcost" name="email" th:value="${weddinghall.email}">
-                              </div>
-                              <div class="">
-                                <label for="addnam"
-                                       class="col-form-label">Số điện thoại:</label>
+                                <label for="cost"
+                                       class="col-form-label">Giá tiền:</label>
                                 <input type="text" class="form-control"
-                                       id="addnam" name="phonenumber" th:value="${weddinghall.phoneNumber}">
+                                       id="cost" name="cost" th:value="${weddinghall.cost}">
                               </div>
-                              <div class="">
-                                <label for="addcos"
-                                       class="col-form-label">Địa chỉ:</label>
-                                <input type="text" class="form-control"
-                                       id="addcos" name="address" th:value="${weddinghall.address}">
-                              </div>
-                            </div>
-                            <div class="col-6 ">
-                              <div class="">
-                                <label for="addnamee"
-                                       class="col-form-label">Username:</label>
-                                <input type="text" class="form-control"
-                                       id="addnamee" name="username" th:value="${weddinghall.userName}">
-                              </div>
-                              <div class="">
-                                <label for="addcoste"
-                                       class="col-form-label">Mật khẩu:</label>
-                                <input type="password" class="form-control"
-                                       id="addcoste" name="password">
-                              </div>
-                              <div class="mb-4 mt-4">
-                                <label for="addexampleFormControlFile1">Ảnh
-                                </label><br>
-                                <input type="file" class="form-control-file"
-                                       id="addexampleFormControlFile1" name="file">
-                              </div>
-                            </div>
-                          </div>
+
+
+
+
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
@@ -180,17 +143,17 @@
                     </div>
                   </div>
                 </div>
-                 <!--Modal Update-->
+                <!-- Modal Update-->
               </th:block>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-      <!--Modal Add-->
+      <!-- Modal Add-->
       <div class="modal fade" id="exampleModalAdd" tabindex="-1" aria-labelledby="exampleModalLabel"
            aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog ">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabelll">Thêm mới</h5>
@@ -198,56 +161,20 @@
                       aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form enctype="multipart/form-data" th:action="@{/admin/user-add}" method="post">
-                <div class="row">
-                  <div class="col-6">
+              <form enctype="multipart/form-data" th:action="@{/admin/shift-add}" method="post">
+
                     <div class="">
                       <label for="addname"
-                             class="col-form-label">Họ Tên:</label>
+                             class="col-form-label">Tên dịch vụ:</label>
                       <input type="text" class="form-control"
-                             id="addname" name="fullname">
+                             id="addname" name="namehall">
                     </div>
                     <div class="">
                       <label for="addcost"
-                             class="col-form-label">Email:</label>
-                      <input type="email" class="form-control"
-                             id="addcost" name="email">
-                    </div>
-                    <div class="">
-                      <label for="addnam"
-                             class="col-form-label">Số điện thoại:</label>
+                             class="col-form-label">Giá tiền:</label>
                       <input type="text" class="form-control"
-                             id="addnam" name="phonenumber">
+                             id="addcost" name="cost">
                     </div>
-                    <div class="">
-                      <label for="addcos"
-                             class="col-form-label">Địa chỉ:</label>
-                      <input type="text" class="form-control"
-                             id="addcos" name="address">
-                    </div>
-                  </div>
-                  <div class="col-6 ">
-                    <div class="">
-                      <label for="addnamee"
-                             class="col-form-label">Username:</label>
-                      <input type="text" class="form-control"
-                             id="addnamee" name="username">
-                    </div>
-                    <div class="">
-                      <label for="addcoste"
-                             class="col-form-label">Mật khẩu:</label>
-                      <input type="password" class="form-control"
-                             id="addcoste" name="password">
-                    </div>
-                    <div class="mb-4 mt-4">
-                      <label for="addexampleFormControlFile1">Ảnh
-                      </label><br>
-                      <input type="file" class="form-control-file"
-                             id="addexampleFormControlFile1" name="file">
-                    </div>
-                  </div>
-                </div>
-
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

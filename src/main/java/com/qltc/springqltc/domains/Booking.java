@@ -47,5 +47,7 @@ public class Booking {
     @OneToMany(mappedBy = "booking")
     private List<BookService> bookServices;
 
-
+    @ManyToOne
+    @JoinColumn(name = "id_user",referencedColumnName = "id")
+    private User user;
 }

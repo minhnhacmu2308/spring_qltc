@@ -43,4 +43,6 @@ public interface MenuFoodRespository extends PagingAndSortingRepository<MenuFood
     @Query(value = "UPDATE menufood SET status = 0 WHERE id = ?",nativeQuery = true)
     int delete( int id);
 
+    @Query(value = "SELECT COUNT(id) FROM menufood ",nativeQuery = true)
+    int countM();
 }

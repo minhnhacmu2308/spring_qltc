@@ -45,4 +45,8 @@ public interface WeddingHallRespository extends JpaRepository<WeddingHall,Intege
     @Query(value = "UPDATE weddinghall SET view = ? WHERE id = ?",nativeQuery = true)
     int updateView(int number,int id);
 
+
+    @Query(value = "SELECT COUNT(id) FROM weddinghall ",nativeQuery = true)
+    int countW();
+
 }

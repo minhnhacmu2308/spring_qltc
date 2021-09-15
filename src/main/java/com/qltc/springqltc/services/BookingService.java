@@ -15,4 +15,12 @@ public interface BookingService {
     void save(int idBooking ,int idService );
 
     Booking checkBookingExist(String dateHeld, int idWeddingHall,  int idShift);
+
+    List<BookService> getBookSer();
+
+    List<Booking> findAll();
+
+    int delete(int id);
+
+
 }

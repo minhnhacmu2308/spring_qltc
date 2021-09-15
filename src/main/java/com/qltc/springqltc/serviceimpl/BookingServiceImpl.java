@@ -43,5 +43,16 @@ public class BookingServiceImpl implements BookingService {
         return bookingRespository.checkBookingExist(dateHeld,idWeddingHall,idShift);
     }
 
+    @Override
+    public List<BookService> getBookSer(){
+        return  bookingServiceRespository.getBookSer();
+    }
 
+    @Override
+    public List<Booking> findAll(){ return bookingRespository.findAll();}
+
+    @Override
+    public int delete(int id) {
+        return bookingRespository.delete(id);
+    }
 }
