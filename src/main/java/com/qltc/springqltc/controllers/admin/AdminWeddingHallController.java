@@ -67,8 +67,8 @@ public class AdminWeddingHallController {
         int costhall = Integer.parseInt(cost);
         int id = Integer.parseInt(request.getParameter("id"));
         String description = request.getParameter("description");
-        String anh = uploadFile.upload(request,image);
-        if(!anh.isEmpty()){
+        if(!image.isEmpty()){
+            String anh = uploadFile.upload(request,image);
             weddingHallService.update(name,costhall,description,anh,id);
             mv.addObject("msg",MyConstants.MSG_SUCCESS);
         }else{

@@ -57,7 +57,7 @@
                                     <td th:text="${weddinghall.id}"></td>
                                     <td>
                                         <a href="" data-bs-toggle="modal" th:data-bs-target="'#exampleModalImg'+ ${weddinghall.id}"><img
-                                                style="width: 120px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
+                                                style="width: 220px !important;height: 150px !important;" th:src="@{'/user/assets/images/'+${weddinghall.image}}"
                                                 class="img-fluid"></a>
 
                                     </td>
@@ -129,7 +129,7 @@
                                                         aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p th:text="${weddinghall.description}"></p>
+                                                <p th:utext="${weddinghall.description}"></p>
                                             </div>
 
                                         </div>
@@ -150,7 +150,7 @@
                                             <div class="modal-body">
                                                 <form enctype="multipart/form-data" th:action="@{/admin/menu-update}" method="post">
                                                     <input type="hidden" th:value="${weddinghall.id}" name="id">
-                                                    <input type="text" th:value="${weddinghall.image}" name="img">
+                                                    <input type="hidden" th:value="${weddinghall.image}" name="img">
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="">
