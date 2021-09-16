@@ -48,7 +48,7 @@ public class AdminMenuFoodController {
         menuFood.setDescription(description);
         menuFood.setImage(anh);
         menuFood.setStatus(1);
-        if(!anh.isEmpty()){
+        if(!image.isEmpty()){
             menuFoodService.save(menuFood);
             mv.addObject("msg",MyConstants.MSG_SUCCESS);
         }else{
@@ -66,7 +66,7 @@ public class AdminMenuFoodController {
         int id = Integer.parseInt(request.getParameter("id"));
         String description = request.getParameter("description");
         String anh = uploadFile.upload(request,image);
-        if(!anh.isEmpty()){
+        if(!image.isEmpty()){
             menuFoodService.update(name,costhall,description,anh,id);
             mv.addObject("msg",MyConstants.MSG_SUCCESS);
         }else{

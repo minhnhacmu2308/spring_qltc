@@ -49,7 +49,7 @@ public class AdminServiceController {
         service.setDescription(description);
         service.setImage(anh);
         service.setStatus(1);
-        if(!anh.isEmpty()){
+        if(!image.isEmpty()){
             serviceService.save(service);
             mv.addObject("msg",MyConstants.MSG_SUCCESS);
         }else{
