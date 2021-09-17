@@ -32,10 +32,10 @@
               <img width="100%" th:src="@{'user/assets/images/'+${weddinghall.image}}">
             </div>
             <div class="intro_item__content">
-              <div class="intro_date">Từ 15/04 - 15/05</div>
+              <!--<div class="intro_date">Từ 15/04 - 15/05</div>-->
               <div class="intro_text">
                 <h1 th:text="${weddinghall.name}"></h1>
-                <div class="intro_price">Giá: 1,200,000đ</div>
+                <div class="intro_price" th:text="'Giá: ' +${weddinghall.cost}+' đ'"></div>
                 <div class="rating rating_4">
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
@@ -108,7 +108,7 @@
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                 </div>
-                <p class="offers_text" th:text="${serviceL.description}"></p>
+                <p class="offers_text" th:utext="${serviceL.description}"></p>
                 <div class="offers_icons">
                   <ul class="offers_icons_list">
                     <li class="offers_icons_item"><img th:src="@{/user/assets/images/post.png}" alt=""></li>
@@ -139,17 +139,6 @@
                   <div class="test_image"><img  th:src="@{'/user/assets/images/'+${menufood.image}}"  alt="">
                   </div>
                   <div class="test_icon"><img  src="user/assets/images/island_t.png"   alt=""></div>
-                  <!--                <div class="test_content_container">-->
-                  <!--                  <div class="test_content">-->
-                  <!--                    <div class="test_item_info">-->
-                  <!--                      <div class="test_name">Hoàng Yến Chibi</div>-->
-                  <!--                      <div class="test_date">12-04-2019</div>-->
-                  <!--                    </div>-->
-                  <!--                    <div class="test_quote_title">" Kỳ nghỉ thật tuyệt !!! "</div>-->
-                  <!--                    <p class="test_quote_text">Các thắng cảnh thật đẹp, khiến tôi không thể quên-->
-                  <!--                      được. Tôi rất hài lòng về dịch cụ của ViVuViet.</p>-->
-                  <!--                  </div>-->
-                  <!--                </div>-->
                 </div>
               </div>
             </a>
@@ -157,94 +146,6 @@
         </div>
       </div>
     </div>
-    <!--        Hotel-->
-   <!-- <div class="main_hotel">
-      <div class="box main_hotel__box">
-        <h2 class="main_hotel_title">Khách sạn được ưa thích nhất</h2>
-        <div class="hotel_items">
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_1.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Green Plaza Hotel</a></div>
-              <div class="hotel_price">1,000,000đ</div>
-              <div class="hotel_location">Hải Châu, Đà Nẵng</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_2.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Hilton Đà Nẵng</a></div>
-              <div class="hotel_price">3,000,000đ</div>
-              <div class="hotel_location">Hải Châu, Đà Nẵng</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_3.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Hanoi Hotel</a></div>
-              <div class="hotel_price">1,900,00đ</div>
-              <div class="hotel_location">Hà Nội</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_4.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Sofitel Sài Gòn</a></div>
-              <div class="hotel_price">4,100,000đ</div>
-              <div class="hotel_location">Quận 1, HCM</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_1.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Green Plaza Hotel</a></div>
-              <div class="hotel_price">1,000,000đ</div>
-              <div class="hotel_location">Hải Châu, Đà Nẵng</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_2.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Hilton Đà Nẵng</a></div>
-              <div class="hotel_price">3,000,000đ</div>
-              <div class="hotel_location">Hải Châu, Đà Nẵng</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_3.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Hanoi Hotel</a></div>
-              <div class="hotel_price">1,900,00đ</div>
-              <div class="hotel_location">Hà Nội</div>
-            </div>
-          </div>
-          <div class="hotel_item">
-            <div class="hotel_image">
-              <img src="styles/images/hotel_4.jpg" alt="">
-            </div>
-            <div class="hotel_content">
-              <div class="hotel_title"><a href="#">Sofitel Sài Gòn</a></div>
-              <div class="hotel_price">4,100,000đ</div>
-              <div class="hotel_location">Quận 1, HCM</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>-->
   </div>
   <footer th:replace="user/fragments :: footer" class="footer">
   </footer>

@@ -10,12 +10,12 @@
 
   </header>
   <div class="main">
-    <div class="main__slide_offers">
+    <div style="margin-right: 20px" class="main__slide_offers">
       <div class="">
         <img height="600px" width="1700px"  src="https://menu24h.vn/image/5e785963b566c3ea9b1e9ebc/original.jpg">
-        <div class="home__content">
+        <div  class="home__content">
           <div style="color: #31124b" class="home__title animated bounceInDown">
-            DỊCH VỤ ƯU ĐÃI
+           MENU THỨC ĂN
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
               </div>
               <div class="blog_post_title"><a href="#" th:text="${service.name}"></a>
               </div>
-              <div class="blog_post_text"><p th:text="${service.description}">.</p>
+              <div class="blog_post_text"><p th:utext="${service.description}">.</p>
               </div>
               <div class="blog_post_link"><a th:href="@{/chi-tiet-menu-thuc-an(id=${service.id})}">Xem tiếp...</a></div>
             </div>
@@ -53,78 +53,17 @@
         </div>
         <div class="blog__sidebar">
           <div class="sidebar_times">
-            <div class="sidebar_title">Thời gian</div>
+            <div class="sidebar_title">Sảnh</div>
             <div class="sidebar_list">
               <ul>
-                <li><a href="">Tháng 1,2019</a></li>
-                <li><a href="">Tháng 2,2019</a></li>
-                <li><a href="">Tháng 3,2019</a></li>
-                <li><a href="">Tháng 4,2019</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="sidebar_categories">
-            <div class="sidebar_title">Danh mục</div>
-            <div class="sidebar_list">
-              <ul>
-                <li><a href="">Đà Nẵng</a></li>
-                <li><a href="">Quảng Năm</a></li>
-                <li><a href="">Huế</a></li>
-                <li><a href="">Hà Nội</a></li>
-                <li><a href="">Hồ Chí Minh</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="sidebar_latest_posts">
-            <div class="sidebar_title">Bài viết mới nhất</div>
-            <div class="latest_posts">
-              <div class="latest_post">
-                <div class="latest_post_image"><img src="styles/images/latest_1.jpg" alt=""></div>
-                <div class="latest_post_content">
-                  <div class="latest_post_title"><a href="#">Bãi biển đẹp ở Đà Nẵng</a></div>
-                  <div class="latest_post_meta">by ViVuViet - 21/04/2019</div>
-                </div>
-              </div>
-              <div class="latest_post">
-                <div class="latest_post_image"><img src="styles/images/latest_1.jpg" alt=""></div>
-                <div class="latest_post_content">
-                  <div class="latest_post_title"><a href="#">Cẩm nang du lịch Quảng Nam</a></div>
-                  <div class="latest_post_meta">by ViVuViet - 21/04/2019</div>
-                </div>
-              </div>
-              <div class="latest_post">
-                <div class="latest_post_image"><img src="styles/images/latest_1.jpg" alt=""></div>
-                <div class="latest_post_content">
-                  <div class="latest_post_title"><a href="#">Các tour biển đảo Việt Nam</a></div>
-                  <div class="latest_post_meta">by ViVuViet - 21/04/2019</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="sidebar_gallery">
-            <div class="sidebar_title">Bộ sưu tập</div>
-            <div class="gallery_content">
-              <ul class="gallery_items">
-                <li class="gallery_item"><a href="#"><img class="imggg"
-                                                          src="styles/images/gallery_1.jpg" alt=""></a>
-                </li>
-                <li class="gallery_item"><a href="#"><img src="styles/images/gallery_2.jpg" alt=""></a>
-                </li>
-                <li class="gallery_item"><a href="#"><img src="styles/images/gallery_3.jpg" alt=""></a>
-                </li>
-                <li class="gallery_item"><a href="#"><img src="styles/images/gallery_4.jpg" alt=""></a>
-                </li>
-                <li class="gallery_item"><a href="#"><img src="styles/images/gallery_5.jpg" alt=""></a>
-                </li>
-                <li class="gallery_item"><a href="#"><img src="styles/images/gallery_6.jpg" alt=""></a>
-                </li>
+                <th:block th:each="wedd : ${listW}">
+                  <li><a th:href="@{/chi-tiet-sanh-cuoi(id=${wedd.id})}" th:text="${wedd.name}"></a></li>
+                </th:block>
 
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </div>

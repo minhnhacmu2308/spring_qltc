@@ -1,7 +1,9 @@
 package com.qltc.springqltc.controllers;
 
 import com.qltc.springqltc.domains.Service;
+import com.qltc.springqltc.domains.WeddingHall;
 import com.qltc.springqltc.serviceimpl.ServiceServiceImpl;
+import com.qltc.springqltc.serviceimpl.WeddingHallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+
+</head>
+<body>
+<div id="wrapper">
+  <!-- Header -->
+  <header th:replace="user/fragments :: header_menu" class="header">
+
+  </header>
+  <div class="main">
+    <div class="main__slide_offers">
+      <div class="">
+        <img height="600px" width="1700px"  src="https://menu24h.vn/image/5e785963b566c3ea9b1e9ebc/original.jpg">
+        <div class="home__content">
+          <div style="color: #31124b" class="home__title animated bounceInDown">
+           LỊCH SỬ ĐẶT TIỆC
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--        blog-->
+    <div class="blog" style="margin-top: 70px">
+      <div class="box blog__box">
+        <div class="blog__list">
+          <th:block th:each="booking : ${list}">
+            <div class="blog_post">
+              <div class="blog_post_image">
+
+                <img class="zoom_img" th:src="@{'/user/assets/images/'+${booking.WeddingHall.image}}" alt="">
+
+              </div>
+              <div class="blog_post_meta">
+
+              </div>
+
+              <div class="blog_post_title"><a href="#" th:text="${booking.WeddingHall.name}"></a>
+              </div>
+              <div class="blog_post_text"><p th:utext="'Tên menu thức ăn: '+${booking.MenuFood.name}">.</p>
+              </div>
+
+              <div class="blog_post_text"><p th:utext="'Ca: '+${booking.Shift.name}">.</p>
+              </div>
+              <div class="blog_post_text"><p th:utext="'Ngày: '+${booking.dateHeld}">.</p>
+              </div>
+              <div class="blog_post_text"> <th:block th:each="weddinghallb : ${listB}">
+                <th:block th:if="${weddinghallb.booking.id == booking.id }">
+                  <p th:utext="'Gói dịch vụ: '+${weddinghallb.Service.name}">.</p><br>
+                </th:block>
+              </th:block>
+              </div>
+              <div style="margin-top: 20px" class="blog_post_title"><a style="color: red" href="#" th:text="'Tổng tiền: '+ ${booking.total}+' VNĐ'"></a>
+              </div>
+            </div>
+          </th:block>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer th:replace="user/fragments :: footer" class="footer">
+  </footer>
+
+</div>
+
+</body>
+<script src="styles/js/main_js.js"></script>
+</html>
