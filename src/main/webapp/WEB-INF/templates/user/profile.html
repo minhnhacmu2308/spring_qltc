@@ -84,9 +84,8 @@
           <form style="margin-top: 30px" name='f' th:action="@{/user/doi-anh-dai-dien}" method="post" enctype="multipart/form-data">
 
             <input type="file" id="file1" name="file"  />
-            <input type="submit" style="background-color: #31124b;height:40px;color: #bacbe6; width:100px;border-radius: 10px" value="Change">
+            <input type="submit" style="background-color: #31124b;height:40px;color: #bacbe6; width:100px;border-radius: 10px" value="CHANGE">
           </form>
-
         </div>
   <script>
     $("#upfile1").click(function () {
@@ -100,7 +99,7 @@
           <p class="about__text" style="font-weight: bold">Địa chỉ: <span th:text="${profile.address}"></span></p>
           <div class="button button_about">
             <div class="button_bcg"></div>
-            <a href="#">Sửa thông tin cá nhân<span></span><span></span><span></span></a>
+            <a th:href="@{/lich-su-dat-tiec(id=${profile.id})}">Lịch sử đặt tiệc<span></span><span></span><span></span></a>
           </div>
         </div>
 

@@ -21,10 +21,10 @@
       </div>
     </div>
     <!--        contact-->
-    <div class="contact_form_container">
-      <div class="box contact_form__box">
+    <div  class="contact_form_container">
+      <div  style="margin-top: 100px" class="box contact_form__box">
         <div class="contact_form__title">Form liên hệ</div>
-        <form name='f' th:action="@{/lien-he}" id="form_contact" class="contact__form" method="post"
+        <form style="margin-top: 20px" name='f' th:action="@{/lien-he}" id="form_contact" class="contact__form" method="post"
               onsubmit="return validateForm()">
           <label>
             <input id="form_name" class="contact__form_name input_field" required name="fullname" placeholder="Họ và Tên"
@@ -41,7 +41,7 @@
 
           <textarea required name="content" id="form_mess" placeholder="Nội dung" rows="4"
                     class="contact__form_mess input_field"></textarea>
-          <input type="submit" class="contact__form_button button trans_200" value="Gởi đi">
+          <input type="submit" class="contact__form_button button trans_200" value="Gửi">
           <p style="color:green;font-size: 30px;font-weight: bold;margin-top: 20px " th:utext="${msg}"></p>
         </form>
 

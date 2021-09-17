@@ -2,7 +2,10 @@ package com.qltc.springqltc.controllers;
 
 import com.qltc.springqltc.domains.MenuFood;
 import com.qltc.springqltc.domains.Service;
+import com.qltc.springqltc.domains.WeddingHall;
 import com.qltc.springqltc.serviceimpl.MenuFoodServiceImpl;
+import com.qltc.springqltc.serviceimpl.ServiceServiceImpl;
+import com.qltc.springqltc.serviceimpl.WeddingHallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -19,6 +23,10 @@ public class MenuFoodController {
 
     @Autowired
     MenuFoodServiceImpl menuFoodService;
+
+    @Autowired
+    WeddingHallServiceImpl weddingHallService;
+
 
     @GetMapping(value = "chi-tiet-menu-thuc-an")
     public ModelAndView getDetailMenuFood(@RequestParam(required = false,name = "id") int id){
@@ -36,7 +44,9 @@ public class MenuFoodController {
         Page<MenuFood> list = menuFoodService.findAll(pageable);
         System.out.println(page.orElse(0).intValue());
         System.out.println(list);
+        List<WeddingHall> listW = weddingHallService.getWeddingHallByNumber(5);
         mv.addObject("list",list);
+        mv.addObject("listW",listW);
         mv.addObject("numberPage",page.orElse(0).intValue());
         return mv;
     }

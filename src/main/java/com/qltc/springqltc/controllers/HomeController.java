@@ -58,7 +58,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView("user/search");
         String keysearch = request.getParameter("keysearch");
         System.out.println(keysearch);
-        Pageable pageable = PageRequest.of(page.orElse(0),1);
+        Pageable pageable = PageRequest.of(page.orElse(0),10);
         System.out.println(page.orElse(0).intValue());
         String keySearchNew = "%"+ keysearch +"%";
         Page<WeddingHall> list = pageWeddingHallService.search(keySearchNew,pageable);

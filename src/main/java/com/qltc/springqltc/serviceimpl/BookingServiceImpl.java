@@ -55,4 +55,9 @@ public class BookingServiceImpl implements BookingService {
     public int delete(int id) {
         return bookingRespository.delete(id);
     }
+
+    @Override
+    public List<Booking> findBookingById(int idUser) {
+        return bookingRespository.findBookingById(idUser);
+    }
 }

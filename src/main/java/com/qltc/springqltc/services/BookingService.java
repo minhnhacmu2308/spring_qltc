@@ -22,5 +22,7 @@ public interface BookingService {
 
     int delete(int id);
 
+    List<Booking> findBookingById(int idUser);
+
 
 }
