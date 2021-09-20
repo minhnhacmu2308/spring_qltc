@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Trang chỉ dành cho ADMIN
         http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
-
+        http.authorizeRequests().antMatchers("/employee/**").access("hasRole('ROLE_EMPLOYEE')");
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
         // Ngoại lệ AccessDeniedException sẽ ném ra.
@@ -65,10 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/auth/login") // Submit URL
                 .loginPage("/auth/login")//
-                .defaultSuccessUrl("/admin/home")//
                 .failureUrl("/auth/login?error=error")
                 .usernameParameter("username")//
                 .passwordParameter("password")
+                .defaultSuccessUrl("/home")//
                 // Cấu hình cho Logout Page.
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful")
                 .deleteCookies("JSESSIONID");

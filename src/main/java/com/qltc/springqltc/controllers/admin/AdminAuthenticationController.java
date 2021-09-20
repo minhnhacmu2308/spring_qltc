@@ -5,10 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -23,6 +20,11 @@ public class AdminAuthenticationController {
         if("error".equalsIgnoreCase(error)){
             mv.addObject("error","Đăng nhập thất bại");
         }
+        return mv;
+    }
+    @PostMapping("/auth/login")
+    public ModelAndView login1(@RequestParam(required = false,name = "error") String error){
+        ModelAndView mv = new ModelAndView("redirect:home");
         return mv;
     }
 
@@ -42,8 +44,8 @@ public class AdminAuthenticationController {
 
             model.addAttribute("userInfo", userInfo);
 
-            String message = "Hi " + principal.getName() //
-                    + "<br> You do not have permission to access this page!";
+            String message = "Chào " + principal.getName() //
+                    + "<br> Bạn không có quyền truy cập vào trang này!";
             model.addAttribute("message", message);
 
         }

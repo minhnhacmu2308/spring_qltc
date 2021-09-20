@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminHomeController {
     @Autowired
     HomeServiceImpl homeService;

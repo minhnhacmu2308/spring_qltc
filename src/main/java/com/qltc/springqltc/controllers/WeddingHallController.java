@@ -88,7 +88,8 @@ public class WeddingHallController {
         List<Integer> arrSeat = StringUtils.convertStringArray(idService);
         WeddingHall weddingHall = weddingHallService.findById(Integer.parseInt(idWeddinghall));
         int sum = 0;
-        if (arrSeat.size() == 1 ) {
+        System.out.println(arrSeat.size());
+        if (arrSeat.size() == 0 ) {
             sum += shift.getCost() + menuFood.getCost() + weddingHall.getCost();
         } else {
             arrSeat = StringUtils.convertStringArray(idService);
