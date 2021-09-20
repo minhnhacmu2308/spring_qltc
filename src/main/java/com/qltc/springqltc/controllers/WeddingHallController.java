@@ -18,9 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class WeddingHallController {
@@ -51,10 +50,15 @@ public class WeddingHallController {
         ModelAndView mv = new ModelAndView("user/weddinghall");
         Pageable pageable = PageRequest.of(page.orElse(0),20);
         Page<WeddingHall> list = pageWeddingHallService.findAll(pageable);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.roll(Calendar.DATE, 3);
+        String datemin = dateFormat.format(cal.getTime());
         List<Shift> listShift = shiftService.getAll();
         List<MenuFood> listMenu = menuFoodService.getAll();
         List<Service> listService = serviceService.getAll();
         System.out.println(page.orElse(0).intValue());
+        mv.addObject("dated",datemin);
         mv.addObject("list",list);
         mv.addObject("listS",listShift);
         mv.addObject("listM",listMenu);
