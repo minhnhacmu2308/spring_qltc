@@ -17,7 +17,7 @@ public class MenuFoodServiceImpl implements MenuFoodService {
 
     @Override
     public Page<MenuFood> findAll(Pageable pageable) {
-        return menuFoodRespository.findAll(pageable);
+        return menuFoodRespository.getStatus(pageable);
     }
 
     @Override

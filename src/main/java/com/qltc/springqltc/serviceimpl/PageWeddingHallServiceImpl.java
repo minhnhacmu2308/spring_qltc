@@ -17,7 +17,7 @@ public class PageWeddingHallServiceImpl implements PageWeddingHallService {
 
     @Override
     public Page<WeddingHall> findAll(Pageable pageable) {
-        return pageWeddingHallRespository.findAll(pageable);
+        return pageWeddingHallRespository.getStatus(pageable);
     }
 
     @Override

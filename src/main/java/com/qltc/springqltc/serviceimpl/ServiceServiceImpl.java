@@ -28,7 +28,7 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public Page<Service> findAll(Pageable pageable) {
-        return serviceRespository.findAll(pageable);
+        return serviceRespository.getStatus(pageable);
     }
 
     @Override

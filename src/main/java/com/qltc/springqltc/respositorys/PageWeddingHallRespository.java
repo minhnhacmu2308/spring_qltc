@@ -16,6 +16,7 @@ public interface PageWeddingHallRespository extends PagingAndSortingRepository<W
     @Query(value = "SELECT * FROM weddinghall WHERE name LIKE ?",nativeQuery = true)
     Page<WeddingHall> searchAndPagine(String keySearch, Pageable pageable);
 
-
+    @Query(value = "SELECT * FROM weddinghall WHERE status = 1",nativeQuery = true)
+    Page<WeddingHall> getStatus(Pageable pageable);
 
 }

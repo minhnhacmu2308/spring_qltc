@@ -53,7 +53,7 @@ public class UserController {
         String pathView = "redirect:thong-tin-ca-nhan/?username="+ user.getUserName();
         ModelAndView mv = new ModelAndView(pathView);
         String anh = uploadFile.upload(request,image);
-        if(!anh.isEmpty()){
+        if(!image.isEmpty()){
             int result = userService.changeAvatar(anh,user.getId());
             if(result == 1) {
                 System.out.println(MyConstants.MSG_SUCCESS);

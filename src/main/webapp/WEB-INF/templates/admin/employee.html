@@ -121,6 +121,7 @@
                       <div class="modal-body">
                         <form enctype="multipart/form-data" th:action="@{/admin/user-update}" method="post">
                           <input type="hidden" th:value="${weddinghall.id}" name="id">
+                          <input type="hidden" th:value="${weddinghall.image}" name="img">
                           <div class="row">
                             <div class="col-6">
                               <div class="">

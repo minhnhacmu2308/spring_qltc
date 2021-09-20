@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface WeddingHallRespository extends JpaRepository<WeddingHall,Integer> {
 
-    @Query(value = "SELECT * FROM weddinghall LIMIT ?",nativeQuery = true)
+    @Query(value = "SELECT * FROM weddinghall WHERE status = 1 LIMIT ? ",nativeQuery = true)
     List<WeddingHall> getWeddingHallByNumber(int number);
 
     @Query(value = "SELECT * FROM weddinghall WHERE status = 1",nativeQuery = true)

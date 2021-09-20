@@ -2,6 +2,7 @@ package com.qltc.springqltc.respositorys;
 
 import com.qltc.springqltc.domains.MenuFood;
 import com.qltc.springqltc.domains.Service;
+import com.qltc.springqltc.domains.WeddingHall;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,7 +22,10 @@ public interface MenuFoodRespository extends PagingAndSortingRepository<MenuFood
 
     MenuFood findById(int id);
 
-    @Query(value = "SELECT * FROM menufood ",nativeQuery = true)
+    @Query(value = "SELECT * FROM menufood WHERE status = 1",nativeQuery = true)
+    Page<MenuFood> getStatus(Pageable pageable);
+
+    @Query(value = "SELECT * FROM menufood WHERE status = 1",nativeQuery = true)
     List<MenuFood> getAll();
 
     MenuFood findMenuFoodById(int id);

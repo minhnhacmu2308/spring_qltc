@@ -88,7 +88,7 @@ public class AdminUserController {
         int id = Integer.parseInt(request.getParameter("id"));
         User user = userService.findById(id);
         if (!password.isEmpty()){
-            if(!anh.isEmpty()){
+            if(!image.isEmpty()){
                 userService.update(fullname,email,phonenumber,address,username,passwordEncryte,anh,id);
                 mv.addObject("msg",MyConstants.MSG_SUCCESS);
             }else{
@@ -97,7 +97,7 @@ public class AdminUserController {
             }
         }
         else{
-            if(!anh.isEmpty()){
+            if(!image.isEmpty()){
                 userService.update(fullname,email,phonenumber,address,username,user.getPassword(),anh,id);
                 mv.addObject("msg",MyConstants.MSG_SUCCESS);
             }else{
